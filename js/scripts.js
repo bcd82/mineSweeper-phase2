@@ -81,11 +81,11 @@ function cloneGameState() {
 function loadPrevGameState() {
     if (gBoardHistoryStates.length <= 1 || !gGame.isOn) return
     console.log(gGameHistoryStates)
-    gBoard = gBoardHistoryStates[gBoardHistoryStates.length -2 ]
+    gBoard = gBoardHistoryStates[gBoardHistoryStates.length -1 ]
     gBoardHistoryStates.pop()
-    gGame.shownCount = gGameHistoryStates[gGameHistoryStates.length - 2].shownCount
-    gGame.markedCount = gGameHistoryStates[gGameHistoryStates.length - 2].markedCount
-    gGame.playerLives = gGameHistoryStates[gGameHistoryStates.length - 2].playerLives
+    gGame.shownCount = gGameHistoryStates[gGameHistoryStates.length - 1].shownCount
+    gGame.markedCount = gGameHistoryStates[gGameHistoryStates.length - 1].markedCount
+    gGame.playerLives = gGameHistoryStates[gGameHistoryStates.length - 1].playerLives
     gGameHistoryStates.pop()
     renderBoard(gBoard)
     renderLife()
@@ -257,7 +257,6 @@ function cellClicked(event, i, j) {
 
     renderBoard(gBoard)
     checkGameOver()
-    cloneGameState()
 
 }
 
