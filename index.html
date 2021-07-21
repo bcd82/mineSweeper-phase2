@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprint Thing</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body onload="initGame()">
+    <header class="header">
+      <h1>My Mine Sweeper</h1>
+    </header>
+    <div class="container">
+      <div class="modal" >
+        <h1>Yay ! You Win / Lose Or Something!</h1>
+        <h3>Choose a difficulty to play again(or click Mr emoji)</h3>
+      </div>
+      <div class="above-table">
+        <div class="row">
+          <div class="size-btns">
+            <button onclick="changeSize(4,this)">Beginner</button>
+            <button onclick="changeSize(8,this)">Medium</button>
+            <button onclick="changeSize(12,this)">Expert</button>
+          </div>
+          <div class="timer">
+            <p>0:000</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="lives">
+          </div>
+          <button class="game-btn" onclick="initGame()"></button>
+          <button class="undo-btn" onclick="loadPrevGameState()">undo</button>
+        </div>
+      </div>
+      <table oncontextmenu="return false;">
+        <tbody></tbody>
+      </table>
+    </div>
+  
+    <footer>
+      <p>Barak Sidi 2021 All rights reserved and shit</p>
+    </footer>
+  </body>
+  <script src="./js/utils.js"></script>
+  <script src="./js/scripts.js"></script>
+</html>
