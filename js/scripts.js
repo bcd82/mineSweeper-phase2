@@ -410,11 +410,10 @@ function getLocalStorageTimes() {
 function renderLocalFastTime() {
     var elFastTimeSpan = document.querySelector('.fast-time');
     if (gLevel.SIZE === 4) {
-
         elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:000';
     } else if (gLevel.SIZE === 8) {
         elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:000';
-    } else {
+    } else  {
         elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:000';
     }
 }
@@ -424,8 +423,8 @@ function checkLocalStorageTime() {
     if (gLevel.SIZE === 4) {
         if (+gFastestTimes.beginnerTime > +timeToComplete || !gFastestTimes.beginnerTime)
             localStorage.setItem('beginnerTime', timeToComplete)
-    } else if (gLevel.SIZE === 8 > +timeToComplete) {
-        if (+gFastestTimes.mediumTime || !gFastestTimes.mediumTime)
+    } else if (gLevel.SIZE === 8) {
+        if (+gFastestTimes.mediumTime > +timeToComplete || !gFastestTimes.mediumTime)
             localStorage.setItem('mediumTime', timeToComplete)
     } else {
         if (+gFastestTimes.expertTime > +timeToComplete || !gFastestTimes.expertTime)
