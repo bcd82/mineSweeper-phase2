@@ -132,11 +132,11 @@ function cellClicked(event, i, j) {
         if (gGame.isFirstClick) {
             {
                 gGame.isFirstClick = false
-                startTimer()
                 placeMines(gBoard, {
                     i,
                     j
                 })
+                startTimer()
                 setMineNegCount(gBoard)
             }
         }
