@@ -22,7 +22,7 @@ var gGame = {
     startTime: 0,
     playerLives: 3
 }
-var gHistoryStates = []
+var gHistoryStates;
 var gFastestTimes;
 
 function initGame() {
@@ -47,6 +47,7 @@ function initGame() {
     renderLife()
     renderLocalFastTime()
     setPlayImg(HAPPY_FACE)
+    gHistoryStates = []
 
     // console.log(gBoard)
 }
@@ -77,7 +78,7 @@ function cloneGameState() {
 //     playerLives: gGame.playerLives
 // }
 function loadPrevGameState() {
-    if (gHistoryStates.length === 0) return
+    if (gHistoryStates.length === 0 || !gGame.isOn) return
     console.log(gHistoryStates)
     gBoard = gHistoryStates.pop()
     renderBoard(gBoard)
@@ -135,7 +136,6 @@ function renderBoard(board) {
             rowClass = 'medium'
         } else {
             rowClass = 'expert'
-
         }
         strHTML += `<tr class="${rowClass}">`;
         for (var j = 0; j < board.length; j++) {
@@ -183,6 +183,7 @@ function renderBoard(board) {
             if (cell.isShown && cell.isMine) {
                 classesStr += ' mine-bg'
             }
+            if(cell.isMarked) classesStr += 'marked'
             strHTML += `<td class="${classesStr}" onmousedown="cellClicked(event,${i},${j})"> ${cellContent} </td>`
         }
         strHTML += '</tr>'
@@ -319,7 +320,7 @@ function startTimer() {
     var elTimer = document.querySelector('.timer')
     gGame.timerInterval = setInterval(function () {
         gGame.secsPassed = (Date.now() - gGame.startTime) / 1000
-        elTimer.innerText = gGame.secsPassed.toFixed(3)
+        elTimer.innerText = gGame.secsPassed.toFixed(2)
     }, 100);
 
 }

@@ -69,7 +69,7 @@ tr.expert{
     width:30px;
     transition: background-color 0.1s;
 }
-.cell:not(.shown):hover {
+.cell:not(.shown,.marked):hover {
     background-color: pink;
 }
 .cell.mine-bg { 
@@ -80,6 +80,9 @@ tr.expert{
 .shown {
     border: 1px inset rgb(138, 138, 138);
     background-color:rgba(138, 138, 138, 0.11) ;
+}
+.marked { 
+    background-color:rgb(126, 117, 117)
 }
 .blue {
     color: blue
@@ -177,10 +180,10 @@ button {
 .lives { 
     width:100px;
     display: inline-block;
-    color:red;
     font-size:30px;
     left:30px;
     position: relative;
+    text-shadow: -2px 1px  1px black;
 }
 .modal { 
     position:absolute;
