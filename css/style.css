@@ -135,11 +135,6 @@ button {
     margin: 0 0;
 }
 
-.game-btn {
-    font-size: 24px;
-    top: 5px
-}
-
 .size-btns {
     position: relative;
     width: auto;
@@ -147,14 +142,39 @@ button {
 }
 
 .game-btn {
-    left: 23.5%;
+    left:2.5%;
     position: relative;
     font-size:30px
     
-    
 }
+.hints { 
+    display: inline-block;
+    width:200px;
+    height:80%;
+    margin-left:30px;
+    top:-10px;
+    position: relative;
+}
+.hint { 
+    display: inline-block;
+    width:20%;
+    text-align: center;
+    position: relative;
+    height:70%;
+    padding:4px;
+    margin-left:14px;
+    font-size:10px;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}
+.hint p {
+    top:20%;
+    position: relative;
+}
+
 .undo-btn {
-    right:-265px;
+    right:-10px;
     position: relative
 }
 

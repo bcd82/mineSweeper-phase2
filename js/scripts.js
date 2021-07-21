@@ -443,3 +443,6 @@ function checkLocalStorageTime() {
     }
     console.log(localStorage)
 }
+function setHintActive(el){
+    el.classList.add('hidden')
+}
