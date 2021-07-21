@@ -7,6 +7,7 @@ const NEUTRAL_FACE = '😐'
 const WORRIED_FACE = '😯'
 const DEAD_FACE = '💀'
 const WIN_FACE = '🥳'
+const UNDO_FACE = '🤔'
 
 var gBoard;
 var gLevel = {
@@ -22,12 +23,14 @@ var gGame = {
     startTime: 0,
     playerLives: 3
 }
-var gHistoryStates;
+var gBoardHistoryStates;
+var gGameHistoryStates;
 var gFastestTimes;
+var gTimerInterval;
 
 function initGame() {
-    if (gGame.timerInterval) {
-        clearInterval(gGame.timerInterval)
+    if (gTimerInterval) {
+        clearInterval(gTimerInterval)
     }
     clearTimer()
     hideModal()
@@ -37,7 +40,6 @@ function initGame() {
         isOn: true,
         shownCount: 0,
         markedCount: 0,
-        timerInterval: null,
         secsPassed: 0,
         startTime: 0,
         playerLives: 3
@@ -47,7 +49,8 @@ function initGame() {
     renderLife()
     renderLocalFastTime()
     setPlayImg(HAPPY_FACE)
-    gHistoryStates = []
+    gBoardHistoryStates = []
+    gGameHistoryStates = []
 
     // console.log(gBoard)
 }
@@ -66,22 +69,26 @@ function cloneGameState() {
 
         }
     }
-    gHistoryStates.push(histories)
+    gBoardHistoryStates.push(histories)
+    var temp = {
+        shownCount : gGame.shownCount,
+        markedCount : gGame.markedCount,
+        playerLives : gGame.playerLives
+    }
+    gGameHistoryStates.push(temp);
 }
-// , {
-//     isON: gGame.isOn,
-//     shownCount: gGame.shownCount,
-//     markedCount: gGame.markedCount,
-//     timerInterval: gGame.timerInterval,
-//     secsPassed: gGame.secsPassed,
-//     startTime: gGame.startTime,
-//     playerLives: gGame.playerLives
-// }
+
 function loadPrevGameState() {
-    if (gHistoryStates.length === 0 || !gGame.isOn) return
-    console.log(gHistoryStates)
-    gBoard = gHistoryStates.pop()
+    if (gBoardHistoryStates.length <= 1 || !gGame.isOn) return
+    console.log(gGameHistoryStates)
+    gBoard = gBoardHistoryStates[gBoardHistoryStates.length -2 ]
+    gBoardHistoryStates.pop()
+    gGame.shownCount = gGameHistoryStates[gGameHistoryStates.length - 2].shownCount
+    gGame.markedCount = gGameHistoryStates[gGameHistoryStates.length - 2].markedCount
+    gGame.playerLives = gGameHistoryStates[gGameHistoryStates.length - 2].playerLives
+    gGameHistoryStates.pop()
     renderBoard(gBoard)
+    renderLife()
 }
 
 function buildBoard(size) {
@@ -183,7 +190,7 @@ function renderBoard(board) {
             if (cell.isShown && cell.isMine) {
                 classesStr += ' mine-bg'
             }
-            if(cell.isMarked) classesStr += 'marked'
+            if (cell.isMarked) classesStr += 'marked'
             strHTML += `<td class="${classesStr}" onmousedown="cellClicked(event,${i},${j})"> ${cellContent} </td>`
         }
         strHTML += '</tr>'
@@ -318,7 +325,7 @@ function checkGameOver() {
 function startTimer() {
     gGame.startTime = Date.now()
     var elTimer = document.querySelector('.timer')
-    gGame.timerInterval = setInterval(function () {
+    gTimerInterval = setInterval(function () {
         gGame.secsPassed = (Date.now() - gGame.startTime) / 1000
         elTimer.innerText = gGame.secsPassed.toFixed(2)
     }, 100);
@@ -355,7 +362,7 @@ function loseGame() {
 
 function gameOver() {
     gGame.isOn = false
-    clearInterval(gGame.timerInterval)
+    clearInterval(gTimerInterval)
     renderBoard(gBoard)
 }
 
@@ -377,6 +384,9 @@ function renderLife() {
         btnIcon = NEUTRAL_FACE;
     } else if (gGame.playerLives === 1) {
         btnIcon = WORRIED_FACE;
+    }
+    else if (!gGame.playerLive){
+        btnIcon = UNDO_FACE
     }
     setPlayImg(btnIcon)
     elLives.innerText = heartStr;
@@ -406,7 +416,7 @@ function setPlayImg(icon) {
 function getLocalStorageTimes() {
     gFastestTimes = localStorage;
     console.log(gFastestTimes)
-    
+
 }
 
 function renderLocalFastTime() {
@@ -415,7 +425,7 @@ function renderLocalFastTime() {
         elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:000';
     } else if (gLevel.SIZE === 8) {
         elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:000';
-    } else  {
+    } else {
         elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:000';
     }
 }
