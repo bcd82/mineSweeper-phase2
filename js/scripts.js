@@ -405,6 +405,7 @@ function setPlayImg(icon) {
 function getLocalStorageTimes() {
     gFastestTimes = localStorage;
     console.log(gFastestTimes)
+    
 }
 
 function renderLocalFastTime() {

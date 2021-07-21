@@ -154,11 +154,22 @@ button {
 .timer {
     display: inline-block;
     position: relative;
-    left: 30%;
+    left: 2%;
     color: white;
     background-color: black;
     padding: 8px 10px;
+    width:247px;
+    box-shadow: inset gray 0 0 0px 2px;
 }
+.timer::before{
+    content:"play time : ";
+    position: relative;
+}
+/* .timer-text {
+    position:absolute;
+    top:120px;
+    left:59%;
+} */
 .lives { 
     width:100px;
     display: inline-block;
