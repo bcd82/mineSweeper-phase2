@@ -321,6 +321,7 @@ function renderLocalFastTime() {
 }
 
 function setHintActive(el) {
+    if(gGame.isHintActive) return
     gGame.isHintActive = true;
     el.classList.add('hidden')
 }
