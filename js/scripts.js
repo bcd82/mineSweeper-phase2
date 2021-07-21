@@ -26,7 +26,7 @@ var gHistoryStates = []
 var gFastestTimes;
 
 function initGame() {
-    if(gGame.timerInterval) { 
+    if (gGame.timerInterval) {
         clearInterval(gGame.timerInterval)
     }
     clearTimer()
@@ -45,6 +45,7 @@ function initGame() {
     getLocalStorageTimes()
     renderBoard(gBoard)
     renderLife()
+    renderLocalFastTime()
     setPlayImg(HAPPY_FACE)
 
     // console.log(gBoard)
@@ -322,7 +323,8 @@ function startTimer() {
     }, 100);
 
 }
-function clearTimer(){
+
+function clearTimer() {
     document.querySelector('.timer').innerText = '0:00'
 }
 
@@ -405,17 +407,29 @@ function getLocalStorageTimes() {
     console.log(gFastestTimes)
 }
 
+function renderLocalFastTime() {
+    var elFastTimeSpan = document.querySelector('.fast-time');
+    if (gLevel.SIZE === 4) {
+
+        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:000';
+    } else if (gLevel.SIZE === 8) {
+        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:000';
+    } else {
+        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:000';
+    }
+}
+
 function checkLocalStorageTime() {
     let timeToComplete = document.querySelector('.timer').innerText
     if (gLevel.SIZE === 4) {
-        if (+gFastestTimes.beginnerTime >  +timeToComplete)
+        if (+gFastestTimes.beginnerTime > +timeToComplete || !gFastestTimes.beginnerTime)
             localStorage.setItem('beginnerTime', timeToComplete)
-    } else if (gLevel.SIZE === 8) {
-        if (+gFastestTimes.mediumTime)
+    } else if (gLevel.SIZE === 8 > +timeToComplete) {
+        if (+gFastestTimes.mediumTime || !gFastestTimes.mediumTime)
             localStorage.setItem('mediumTime', timeToComplete)
     } else {
-        if (+gFastestTimes.expertTime)
-        localStorage.setItem('expertTime', timeToComplete)
+        if (+gFastestTimes.expertTime > +timeToComplete || !gFastestTimes.expertTime)
+            localStorage.setItem('expertTime', timeToComplete)
     }
     console.log(localStorage)
 }

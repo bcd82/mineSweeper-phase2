@@ -12,7 +12,7 @@
       <h1>My Mine Sweeper</h1>
     </header>
     <div class="container">
-      <div class="modal" >
+      <div class="modal">
         <h1>Yay ! You Win / Lose Or Something!</h1>
         <h3>Choose a difficulty to play again(or click Mr emoji)</h3>
       </div>
@@ -28,8 +28,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="lives">
-          </div>
+          <div class="lives"></div>
           <button class="game-btn" onclick="initGame()"></button>
           <button class="undo-btn" onclick="loadPrevGameState()">undo</button>
         </div>
@@ -37,8 +36,10 @@
       <table oncontextmenu="return false;">
         <tbody></tbody>
       </table>
+      <div class="row">
+        Fastest Time for this difficulty : <span class="fast-time">0:000</span>
+      </div>
     </div>
-  
     <footer>
       <p>Barak Sidi 2021 All rights reserved and shit</p>
     </footer>
