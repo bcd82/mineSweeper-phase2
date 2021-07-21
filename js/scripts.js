@@ -42,7 +42,8 @@ function initGame() {
         markedCount: 0,
         secsPassed: 0,
         startTime: 0,
-        playerLives: 3
+        playerLives: 3,
+        isHintActive: false
     }
     getLocalStorageTimes()
     renderBoard(gBoard)
@@ -71,9 +72,9 @@ function cloneGameState() {
     }
     gBoardHistoryStates.push(histories)
     var temp = {
-        shownCount : gGame.shownCount,
-        markedCount : gGame.markedCount,
-        playerLives : gGame.playerLives
+        shownCount: gGame.shownCount,
+        markedCount: gGame.markedCount,
+        playerLives: gGame.playerLives
     }
     gGameHistoryStates.push(temp);
 }
@@ -81,7 +82,7 @@ function cloneGameState() {
 function loadPrevGameState() {
     if (gBoardHistoryStates.length <= 1 || !gGame.isOn) return
     console.log(gGameHistoryStates)
-    gBoard = gBoardHistoryStates[gBoardHistoryStates.length -1 ]
+    gBoard = gBoardHistoryStates[gBoardHistoryStates.length - 1]
     gBoardHistoryStates.pop()
     gGame.shownCount = gGameHistoryStates[gGameHistoryStates.length - 1].shownCount
     gGame.markedCount = gGameHistoryStates[gGameHistoryStates.length - 1].markedCount
@@ -242,7 +243,14 @@ function cellClicked(event, i, j) {
             }
         }
         cloneGameState()
-
+        if (gGame.isHintActive) {
+            hintShow({
+                i,
+                j
+            }, gBoard)
+            renderBoard(gBoard)
+            return
+        }
         if (cell.isMarked) return
         if (cell.isMine) {
             gGame.playerLives--;
@@ -275,6 +283,7 @@ function showCell(posI, posJ, board) {
 }
 
 function expandShow(pos, board) {
+
     for (var i = pos.i - 1; i <= pos.i + 1; i++) {
         if (i < 0 || i >= board.length) continue
         for (var j = pos.j - 1; j <= pos.j + 1; j++) {
@@ -294,6 +303,30 @@ function expandShow(pos, board) {
             }
         }
     }
+}
+
+function hintShow(pos, board) {
+    gGame.isHintActive = false;
+    var exposedCells = [];
+    var exposedCellsVisibility = [];
+    for (var i = pos.i - 1; i <= pos.i + 1; i++) {
+        if (i < 0 || i >= board.length) continue
+        for (var j = pos.j - 1; j <= pos.j + 1; j++) {
+            if (j < 0 || j >= board.length) continue
+            var cell = board[i][j]
+            exposedCells.push(cell)
+            exposedCellsVisibility.push(cell.isShown)
+        }
+    }
+    for (var idx = 0; idx < exposedCells.length; idx++) {
+        exposedCells[idx].isShown = true;
+    }
+    setTimeout(() => {
+        for (var idx = 0; idx < exposedCells.length; idx++) {
+            exposedCells[idx].isShown = exposedCellsVisibility[idx];
+        }
+        renderBoard(gBoard)
+    }, 1000)
 }
 
 function cellMarked(i, j, board) {
@@ -383,8 +416,7 @@ function renderLife() {
         btnIcon = NEUTRAL_FACE;
     } else if (gGame.playerLives === 1) {
         btnIcon = WORRIED_FACE;
-    }
-    else if (!gGame.playerLive){
+    } else if (!gGame.playerLive) {
         btnIcon = UNDO_FACE
     }
     setPlayImg(btnIcon)
@@ -443,6 +475,8 @@ function checkLocalStorageTime() {
     }
     console.log(localStorage)
 }
-function setHintActive(el){
+
+function setHintActive(el) {
+    gGame.isHintActive = true;
     el.classList.add('hidden')
 }
