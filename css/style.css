@@ -23,44 +23,46 @@ p {
 body {
     background: linear-gradient(315deg, #2C3E50 0%, #000000 74%);
     height: 100vh;
-    z-index:1;
+    z-index: 1;
 }
 
 body:not(.container) {
     color: white;
 }
+
 @keyframes bg-anim {
     0% {
         background-position-x: 0;
         background-position-y: 510px;
 
     }
+
     100% {
         background-position-x: 510px;
         background-position-y: 0px;
     }
 }
-.background { 
-    animation: bg-anim 10s linear infinite ;
-    top:0;
-    background-image:url(../img/mine.png);
+
+.background {
+    animation: bg-anim 10s linear infinite;
+    top: 0;
+    background-image: url(../img/mine.png);
     position: absolute;
-    width:100%;
-    height:100%;
-    z-index:-1;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
     background-repeat: repeat;
-    background-position-x:500px;
-    opacity:0.06;
+    background-position-x: 500px;
+    opacity: 0.06;
     overflow: hidden;
     filter: contrast(10);
-    /* filter: invert(0.3); */
-    
+
 }
 
 button {
     font-family: game-font;
-    transition:box-shadow 0.2s;
-    box-shadow:  0 1px 2px black;
+    transition: box-shadow 0.2s;
+    box-shadow: 0 1px 2px black;
     border-radius: 0.5vh;
 }
 
@@ -88,7 +90,7 @@ h1 {
     margin-bottom: 50px;
     background-color: rgba(228, 228, 228, 0.87);
     border: 5px inset rgb(168, 168, 168);
-    z-index:3;
+    z-index: 3;
 }
 
 table {
@@ -230,9 +232,30 @@ button {
     font-size: 15px;
 }
 
+.beg {
+    background-color: rgb(68, 131, 68);
+    color: white
+}
+
+.med {
+    background-color: rgb(112, 160, 231);
+    color: white
+}
+
+.exp {
+    background-color: rgb(255, 113, 113);
+    color: white
+}
+
 .selected {
     background-color: gray;
     color: white;
+    box-shadow: inset 0 2px 3px black;
+}
+
+.selected:hover {
+    box-shadow: inset 0 1px 2px black;
+
 }
 
 .manual-selected {
@@ -382,7 +405,7 @@ button {
     position: relative;
     text-shadow: -2px 1px 1px black;
     top: -20px;
-    color:rgba(255, 0, 0, 0.705);
+    color: rgba(255, 0, 0, 0.705);
 }
 
 .modal {
