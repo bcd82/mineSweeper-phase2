@@ -159,6 +159,19 @@ function cellClicked(event, i, j) {
     }
     if (event.button === 2) {
         if (gGame.isManualMode) return
+         if (gGame.isFirstClick) {
+            gGame.isFirstClick = false
+            if (!gGame.isManualGame) {
+                document.querySelector('.manual').classList.add('hidden')
+                placeMines(gBoard, {
+                    i,
+                    j
+                })
+            }
+            startTimer()
+            setMineNegCount(gBoard)
+         }
+            
         cellMarked(i, j, gBoard)
     }
     renderBoard(gBoard)
