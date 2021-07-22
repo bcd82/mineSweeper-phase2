@@ -42,7 +42,6 @@ h1 {
 table {
     width: 500px;
     height: 500px;
-    /* border: 1px solid gray; */
     margin: 0 auto;
     table-layout: fixed;
 
@@ -173,6 +172,9 @@ button {
 .selected { 
     background-color:gray;
     color:white;
+}
+.manual-selected { 
+    background-color:greenyellow;
 }
 
 .timer {

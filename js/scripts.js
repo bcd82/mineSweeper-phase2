@@ -21,10 +21,7 @@ var gFastestTimes;
 var gTimerInterval;
 
 function initGame() {
-    if (gTimerInterval) {
-        clearInterval(gTimerInterval)
-    }
-
+    if (gTimerInterval) clearInterval(gTimerInterval)
     gBoard = buildBoard(gLevel.SIZE)
     gGame = {
         isOn: true,
@@ -36,7 +33,8 @@ function initGame() {
         isHintActive: false,
         isFirstClick: true,
         safeClicks: 3,
-        isSafeClickActive: false
+        isSafeClickActive: false,
+        isManualMode:false
     }
     getLocalStorageTimes()
     resetDOMElements()
@@ -186,8 +184,6 @@ function expandShow(pos, board) {
     }
 }
 
-
-
 function cellMarked(i, j, board) {
     var cell = board[i][j];
     if (cell.isShown) return
@@ -276,7 +272,7 @@ function getLocalStorageTimes() {
 }
 
 function setHintActive(el) {
-    if (gGame.isHintActive) return
+    if (gGame.isHintActive || !gGame.isOn) return
     gGame.isHintActive = true;
     el.classList.add('used')
     el.disabled = true;
@@ -307,7 +303,7 @@ function hintShow(pos, board) {
 }
 
 function showRandomSafeCell() {
-    if (gGame.isSafeClickActive) return
+    if (gGame.isSafeClickActive || !gGame.isOn) return
     else {
         if (gGame.safeClicks <= 0) return
         gGame.isSafeClickActive = true;
@@ -351,4 +347,14 @@ function resetDOMElements() {
     renderLocalFastTime()
     document.querySelector('.safe-text span').innerText = gGame.safeClicks;
     setPlayImg(HAPPY_FACE)
+}
+
+function setManualMode(elBtn){
+    if(!gGame.isManualMode) {gGame.isManualMode= true;
+        elBtn.classList.add('manual-selected')
+    console.log('manual mode on')}
+    else{
+    gGame.isManualMode =false    
+    elBtn.classList.remove('manual-selected')
+    console.log('manual mode off')}
 }
