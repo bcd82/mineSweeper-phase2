@@ -351,6 +351,8 @@ function resetDOMElements() {
     renderLocalFastTime()
     document.querySelector('.safe-text span').innerText = gGame.safeClicks;
     document.querySelector('.manual').classList.remove('hidden');
+    document.querySelector('.manual').classList.remove('manual-selected');
+    document.querySelector('.manual').innerText = 'manual';
     setPlayImg(HAPPY_FACE)
 }
 

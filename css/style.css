@@ -19,8 +19,17 @@ p {
     text-align: center;
     user-select: none;
 }
+body  {
+    background: linear-gradient(315deg, #2C3E50 0%,  #000000 74%);
+    height:100vh;
+}
+body:not(.container) {
+    color:white;
+}
 button { 
     font-family: game-font;
+    border-radius: 5%;
+
 }
 h1 {
     margin-top: 1.5%;
@@ -33,13 +42,11 @@ h1 {
 .container {
     width: 600px;
     height: 800px;
-    border: 1px solid red;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 50px;
-    padding: 20 10px;
-    background-color: rgb(228, 228, 228);
-    border: 10px outset rgb(223, 222, 222);
+    background: linear-gradient(173deg, #2C3E50 0%,  #a0a0a0 74%);
+    border: 10px outset rgb(118 142 153);
 }
 
 table {
@@ -63,16 +70,16 @@ tr.expert {
 }
 
 .cell {
-    border: 5px outset rgb(138, 138, 138);
+    border: 5px outset rgb(94 102 152);
     padding: 0;
     margin: 0;
     cursor: pointer;
-    background-color: gray;
+    background-color: rgb(138 155 179);
     font-size: 20px;
     width: auto;
     height: 30px;
     width: 30px;
-    transition: background-color border-color 0.1s;
+    transition: border-color 0.1s;
     ;
 }
 
@@ -81,14 +88,14 @@ tr.expert {
 }
 
 .cell.mine-bg {
-    background-color: rgba(255, 0, 0, 0.459);
+    background-color: rgba(255, 0, 0, 0.801);
     height: 30px;
     width: 30px;
 }
 
 .shown {
     border: 1px inset rgb(138, 138, 138);
-    background-color: rgba(138, 138, 138, 0.11);
+    background-color: rgb(214 229 255 / 74%);
 }
 
 .marked {
@@ -143,7 +150,8 @@ tr.expert {
     height: 50%;
     left: 3.5%;
     margin-bottom: 5px;
-    max-height:140px
+    max-height:140px;
+    color:black;
 }
 .bottom{
     top:-30px;
@@ -162,6 +170,7 @@ button {
     width:100%;
     top:-15px;
     position: relative;
+    color:white;
 }
 .size-btns {
     position: relative;
@@ -172,7 +181,7 @@ button {
 }
 .size-btn {
     width:120px;
-    font-size:15px
+    font-size:15px;
 }
 .selected { 
     background-color:gray;
@@ -221,7 +230,7 @@ button {
     height: 70%;
     padding: 4px;
     font-size: 10px;
-    background-color: black;
+    background-color: rgb(30, 126, 94);
     color: white;
     cursor: pointer;
 }
@@ -297,7 +306,9 @@ button {
     left: 30%;
     background-color: rgba(255, 255, 255, 0.781);
     border: 5px solid red;
-    padding: 20px 10px;
+    padding: 10px 10px;
+    color:black;
+
 }
 
 .modal h1 {
