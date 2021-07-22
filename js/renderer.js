@@ -110,6 +110,7 @@ function setPlayImg(icon) {
 function resetHints() {
     var elHints = document.querySelectorAll('.hint')
     elHints.forEach(hint => {
-        hint.classList.remove('hidden');
+        hint.classList.remove('used');
+        hint.disabled = false;
     });
 }
