@@ -263,6 +263,7 @@ function gameOver() {
 }
 
 function changeSize(size, elBtn) {
+    if(gGame.isManualMode) return;
     gLevel.SIZE = size;
     gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 6);
     var elBtns = document.querySelectorAll('.size-btn')
@@ -281,7 +282,7 @@ function getLocalStorageTimes() {
 }
 
 function setHintActive(el) {
-    if (gGame.isHintActive || !gGame.isOn|| !gGame.isManualMode) return
+    if (gGame.isHintActive || !gGame.isOn|| gGame.isManualMode) return
     gGame.isHintActive = true;
     el.classList.add('used')
     el.disabled = true;
@@ -312,7 +313,7 @@ function hintShow(pos, board) {
 }
 
 function showRandomSafeCell() {
-    if (gGame.isSafeClickActive || !gGame.isOn || !gGame.isManualMode) return
+    if (gGame.isSafeClickActive || !gGame.isOn || gGame.isManualMode) return
     else {
         if (gGame.safeClicks <= 0) return
         gGame.isSafeClickActive = true;
@@ -364,22 +365,29 @@ function setManualMode(elBtn) {
         gGame.isManualMode = true;
         elBtn.classList.add('manual-selected')
         console.log('manual mode on')
+        elBtn.innerText="PLAY"           
+
     } else {
-        gGame.isManualMode = false
-        elBtn.classList.add('hidden')            
         var count= 0;
         for (var i = 0; i < gBoard.length; i++) {
             for (let j = 0; j < gBoard.length; j++) {
                 if (gBoard[i][j].isShown) count++  
-                gLevel.MINES = count  
                 gBoard[i][j].isShown = false
             }
             if (count > 0) {
                 gGame.isManualGame = true;
+                gLevel.MINES = count  
+                elBtn.classList.add('hidden')            
+            } 
+            else {
+                gGame.isManualGame = false;
             }
             renderBoard(gBoard)
         }
+        elBtn.innerText="MANUAL"           
         elBtn.classList.remove('manual-selected')
         console.log('manual mode off')
+        gGame.isManualMode = false
+
     }
 }
