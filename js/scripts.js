@@ -192,29 +192,7 @@ function expandShow(pos, board) {
     }
 }
 
-function hintShow(pos, board) {
-    gGame.isHintActive = false;
-    var exposedCells = [];
-    var exposedCellsVisibility = [];
-    for (var i = pos.i - 1; i <= pos.i + 1; i++) {
-        if (i < 0 || i >= board.length) continue
-        for (var j = pos.j - 1; j <= pos.j + 1; j++) {
-            if (j < 0 || j >= board.length) continue
-            var cell = board[i][j]
-            exposedCells.push(cell)
-            exposedCellsVisibility.push(cell.isShown)
-        }
-    }
-    for (var idx = 0; idx < exposedCells.length; idx++) {
-        exposedCells[idx].isShown = true;
-    }
-    setTimeout(() => {
-        for (var idx = 0; idx < exposedCells.length; idx++) {
-            exposedCells[idx].isShown = exposedCellsVisibility[idx];
-        }
-        renderBoard(gBoard)
-    }, 1000)
-}
+
 
 function cellMarked(i, j, board) {
     var cell = board[i][j];
@@ -311,15 +289,37 @@ function renderLocalFastTime() {
 
 function setHintActive(el) {
     if (gGame.isHintActive) return
+    
     gGame.isHintActive = true;
-    el.classList.add('hidden')
+    el.classList.add('used')
+    el.setAttribute('disabled','true')
 }
-
+function hintShow(pos, board) {
+    gGame.isHintActive = false;
+    var exposedCells = [];
+    var exposedCellsVisibility = [];
+    for (var i = pos.i - 1; i <= pos.i + 1; i++) {
+        if (i < 0 || i >= board.length) continue
+        for (var j = pos.j - 1; j <= pos.j + 1; j++) {
+            if (j < 0 || j >= board.length) continue
+            var cell = board[i][j]
+            exposedCells.push(cell)
+            exposedCellsVisibility.push(cell.isShown)
+        }
+    }
+    for (var idx = 0; idx < exposedCells.length; idx++) {
+        exposedCells[idx].isShown = true;
+    }
+    setTimeout(() => {
+        for (var idx = 0; idx < exposedCells.length; idx++) {
+            exposedCells[idx].isShown = exposedCellsVisibility[idx];
+        }
+        renderBoard(gBoard)
+    }, 1000)
+}
 function showRandomSafeCell() {
-    if (gGame.isSafeClickActive) {
-        gGame.isSafeClickActive = false;
-        gGame.safeClicks++;
-    } else {
+    if (gGame.isSafeClickActive) return
+     else {
         if (gGame.safeClicks <= 0) return
          gGame.isSafeClickActive = true;
         var safeCells = getSafeCells(gBoard)
