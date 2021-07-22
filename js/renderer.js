@@ -96,7 +96,7 @@ function showModal(gameResult) {
     if (gameResult === 'win') {
         elModal.querySelector('h1').innerText = 'YAY !\n you are a mine sweeping master \n I\'m proud of you'
     } else {
-        elModal.querySelector('h1').innerText = 'Sad face !\n you were blown up :(\n R.I.P you '
+        elModal.querySelector('h1').innerText = 'Sad face :( \n you were blown up.\n R.I.P you '
 
     }
 }
@@ -125,11 +125,11 @@ function resetHints() {
 function renderLocalFastTime() {
     var elFastTimeSpan = document.querySelector('.fast-time');
     if (gLevel.SIZE === 4) {
-        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:00';
+        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0.00';
     } else if (gLevel.SIZE === 8) {
-        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:00';
+        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0.00';
     } else {
-        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:00';
+        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0.00';
     }
 }
 
