@@ -7,7 +7,7 @@
     <title>Sprint Thing</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body onload="initGame()">
+  <body onload="initGame()"  oncontextmenu="return false;">
     <header class="header">
       <h1>My Mine Sweeper</h1>
     </header>
@@ -20,19 +20,32 @@
         <div class="row">
           <p class="dif-text">Choose your difficulty</p>
           <div class="size-btns">
-            <button class="size-btn selected" onclick="changeSize(4,this)">Beginner</button>
-            <button class="size-btn" onclick="changeSize(8,this)">Medium</button>
-            <button class="size-btn" onclick="changeSize(12,this)">Expert</button>
-            <button class="size-btn manual" onclick="setManualMode(this)">Manual</button>
+            <button class="size-btn selected" onclick="changeSize(4,this)">
+              Beginner
+            </button>
+            <button class="size-btn" onclick="changeSize(8,this)">
+              Medium
+            </button>
+            <button class="size-btn" onclick="changeSize(12,this)">
+              Expert
+            </button>
+            <button class="size-btn manual" onclick="setManualMode(this)">
+              Manual
+            </button>
           </div>
           <!-- <p class="timer-text"> play time</p> -->
-        
         </div>
         <div class="row">
           <div class="hints">
-            <button class="hint" onclick="setHintActive(this)"><p>HINT</p></button>
-            <button class="hint" onclick="setHintActive(this)"><p>HINT</p></button>
-            <button class="hint" onclick="setHintActive(this)"><p>HINT</p></button>
+            <button class="hint" onclick="setHintActive(this)">
+              <p>HINT</p>
+            </button>
+            <button class="hint" onclick="setHintActive(this)">
+              <p>HINT</p>
+            </button>
+            <button class="hint" onclick="setHintActive(this)">
+              <p>HINT</p>
+            </button>
           </div>
           <button class="game-btn" onclick="initGame()"></button>
           <div class="timer">
@@ -40,7 +53,7 @@
           </div>
         </div>
       </div>
-      <table oncontextmenu="return false;">
+      <table>
         <tbody></tbody>
       </table>
       <div class="row">

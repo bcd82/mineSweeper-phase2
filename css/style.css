@@ -17,6 +17,7 @@ p {
     font-family: game-font;
     font-weight: 100;
     text-align: center;
+    user-select: none;
 }
 button { 
     font-family: game-font;

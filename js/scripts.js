@@ -125,7 +125,7 @@ function cellClicked(event, i, j) {
             {
                 gGame.isFirstClick = false
                 if (!gGame.isManualGame) {
-                    
+                    document.querySelector('.manual').classList.add('hidden')
                     placeMines(gBoard, {
                         i,
                         j
@@ -263,7 +263,7 @@ function gameOver() {
 }
 
 function changeSize(size, elBtn) {
-    if(gGame.isManualMode) return;
+    if (gGame.isManualMode) return;
     gLevel.SIZE = size;
     gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 6);
     var elBtns = document.querySelectorAll('.size-btn')
@@ -275,14 +275,8 @@ function changeSize(size, elBtn) {
     initGame()
 }
 
-function getLocalStorageTimes() {
-    gFastestTimes = localStorage;
-    console.log(gFastestTimes)
-
-}
-
 function setHintActive(el) {
-    if (gGame.isHintActive || !gGame.isOn|| gGame.isManualMode) return
+    if (gGame.isHintActive || !gGame.isOn || gGame.isManualMode) return
     gGame.isHintActive = true;
     el.classList.add('used')
     el.disabled = true;
@@ -365,26 +359,25 @@ function setManualMode(elBtn) {
         gGame.isManualMode = true;
         elBtn.classList.add('manual-selected')
         console.log('manual mode on')
-        elBtn.innerText="PLAY"           
+        elBtn.innerText = "PLAY"
 
     } else {
-        var count= 0;
+        var count = 0;
         for (var i = 0; i < gBoard.length; i++) {
             for (let j = 0; j < gBoard.length; j++) {
-                if (gBoard[i][j].isShown) count++  
+                if (gBoard[i][j].isShown) count++
                 gBoard[i][j].isShown = false
             }
             if (count > 0) {
                 gGame.isManualGame = true;
-                gLevel.MINES = count  
-                elBtn.classList.add('hidden')            
-            } 
-            else {
+                gLevel.MINES = count
+                elBtn.classList.add('hidden')
+            } else {
                 gGame.isManualGame = false;
             }
             renderBoard(gBoard)
         }
-        elBtn.innerText="MANUAL"           
+        elBtn.innerText = "MANUAL"
         elBtn.classList.remove('manual-selected')
         console.log('manual mode off')
         gGame.isManualMode = false

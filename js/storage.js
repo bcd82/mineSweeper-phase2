@@ -50,3 +50,8 @@ function checkLocalStorageTime() {
     }
     console.log(localStorage)
 }
+function getLocalStorageTimes() {
+    gFastestTimes = localStorage;
+    console.log(gFastestTimes)
+
+}
