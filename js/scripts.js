@@ -236,6 +236,7 @@ function clearTimer() {
 
 function winGame() {
     changeBgClr('win')
+    document.querySelector('.game-btn').classList.add('game-btn-anim')
     showModal('win')
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
@@ -358,6 +359,7 @@ function resetDOMElements() {
     document.querySelector('.manual').classList.remove('hidden');
     document.querySelector('.manual').classList.remove('manual-selected');
     document.querySelector('.manual').innerText = 'manual';
+    document.querySelector('.game-btn').classList.remove('game-btn-anim')
     setPlayImg(HAPPY_FACE)
 }
 

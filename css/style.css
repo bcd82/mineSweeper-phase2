@@ -76,7 +76,7 @@ body:not(.container) {
     transition:2s;
 }
 .dead { 
-    background: linear-gradient(315deg, #5f2626 0%, #000000 74%);
+    background: linear-gradient(315deg, #961818 0%, #000000 74%);
 }
 .win { 
     background: linear-gradient(315deg, #d563f8 0%, #000000 74%);
@@ -304,7 +304,16 @@ button {
     content: "play time : ";
     position: relative;
 }
-
+@keyframes colorCicle {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+.game-btn-anim { 
+    background: linear-gradient(270deg, #c598ed, #ed98bb, #edcf98, #98ed99, #98d4ed, #98a0ed, #d098ed);
+    background-size: 1400% 1400%;
+    animation: colorCicle 2s infinite;
+}
 .game-btn {
     left: 2.5%;
     position: relative;
