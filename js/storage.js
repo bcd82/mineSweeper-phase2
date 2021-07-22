@@ -21,9 +21,12 @@ function cloneGameState() {
         playerLives: gGame.playerLives
     }
     gGameHistoryStates.push(temp);
+    if(gBoardHistoryStates.length > 1){
+        document.querySelector('.undo-btn').classList.remove('selected')
+    }
 }
 
-function loadPrevGameState() {
+function loadPrevGameState(el) {
     if (gBoardHistoryStates.length <= 1 || !gGame.isOn) return
     console.log(gGameHistoryStates)
     gBoard = gBoardHistoryStates[gBoardHistoryStates.length - 1]
@@ -34,6 +37,11 @@ function loadPrevGameState() {
     gGameHistoryStates.pop()
     renderBoard(gBoard)
     renderLife()
+    if (gBoardHistoryStates.length <= 1){
+        if (gBoardHistoryStates.length <= 1){
+            el.classList.add('selected')
+        }
+    }
 }
 
 function checkLocalStorageTime() {

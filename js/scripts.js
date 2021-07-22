@@ -8,6 +8,7 @@ const WORRIED_FACE = '😯'
 const DEAD_FACE = '💀'
 const WIN_FACE = '🥳'
 const UNDO_FACE = '🤔'
+const NO_HEARTS = '👻'
 
 var gBoard;
 var gLevel = {
@@ -137,6 +138,7 @@ function cellClicked(event, i, j) {
             }
         }
         cloneGameState()
+
         if (gGame.isHintActive) {
             hintShow({
                 i,
@@ -316,10 +318,13 @@ function hintShow(pos, board) {
     }, 1000)
 }
 
-function showRandomSafeCell() {
+function showRandomSafeCell(el) {
     if (gGame.isSafeClickActive || !gGame.isOn || gGame.isManualMode) return
     else {
-        if (gGame.safeClicks <= 0) return
+        if (gGame.safeClicks <= 0) {
+           
+            return
+        }
         gGame.isSafeClickActive = true;
         var safeCells = getSafeCells(gBoard)
         var randIdx = safeCells[getRandomInt(0, safeCells.length)]
@@ -328,6 +333,9 @@ function showRandomSafeCell() {
         elCell.classList.add('safe-cell')
         console.log(elCell)
         gGame.safeClicks--
+        if (gGame.safeClicks === 0){
+            el.classList.add('selected')
+        }
         setTimeout(() => {
             elCell.classList.remove('safe-cell')
             gGame.isSafeClickActive = false
@@ -364,7 +372,11 @@ function resetDOMElements() {
     document.querySelector('.manual').classList.remove('hidden');
     document.querySelector('.manual').classList.remove('manual-selected');
     document.querySelector('.manual').innerText = 'manual';
-    document.querySelector('.game-btn').classList.remove('game-btn-anim')
+    document.querySelector('.game-btn').classList.remove('game-btn-anim');
+    document.querySelector('.safe-btn').classList.remove('selected');
+    document.querySelector('.undo-btn').classList.add('selected')
+
+
     setPlayImg(HAPPY_FACE)
 }
 

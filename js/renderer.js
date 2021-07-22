@@ -79,7 +79,10 @@ function renderLife() {
         btnIcon = NEUTRAL_FACE;
     } else if (gGame.playerLives === 1) {
         btnIcon = WORRIED_FACE;
-    } else if (!gGame.playerLive) {
+    } else if (gGame.playerLives === 0) {
+        heartStr = NO_HEARTS
+    }
+    else if (!gGame.playerLive) {
         btnIcon = UNDO_FACE
     }
     setPlayImg(btnIcon)

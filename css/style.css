@@ -434,12 +434,13 @@ button {
 
 .lives {
     width: 200px;
+    height:70px;
     display: inline-block;
     font-size: 50px;
     left: -15px;
     position: relative;
     text-shadow: -2px 1px 1px black;
-    top: -20px;
+    top: -15px;
     color: rgba(255, 0, 0, 0.705);
     border:2px solid rgba(185, 151, 176, 0.473);
     border-radius: 12em;
