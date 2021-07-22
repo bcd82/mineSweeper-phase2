@@ -18,7 +18,9 @@ p {
     font-weight: 100;
     text-align: center;
 }
-
+button { 
+    font-family: game-font;
+}
 h1 {
     margin-top: 1.5%;
 }
@@ -69,7 +71,8 @@ tr.expert {
     width: auto;
     height: 30px;
     width: 30px;
-    transition: background-color 0.1s;
+    transition: background-color border-color 0.1s;
+    ;
 }
 
 .cell:not(.shown, .marked):hover {
@@ -142,7 +145,7 @@ tr.expert {
     max-height:140px
 }
 .bottom{
-    top:-50px;
+    top:-30px;
     position: relative;
     left:0%
 }
@@ -167,7 +170,8 @@ button {
     top:-5px;
 }
 .size-btn {
-    width:100px;
+    width:120px;
+    font-size:15px
 }
 .selected { 
     background-color:gray;
@@ -237,33 +241,36 @@ button {
 
 .safe-btn {
     position: relative;
-    height: 40%;
+    height: 60%;
     display: block;
 }
 
 .safe-text {
     margin-top: 5px;
-    height: 40%;
     position: relative;
     font-size: 10px;
     display: block;
+    width:100%;
 }
 @keyframes safe-anim {
-    0%   {background-color: gray;}
-    25%  {background-color: aquamarine;}
-    50%  {background-color: gray;}
-    75% {background-color: aquamarine;}
-    100% {background-color: gray;}
+    0%   {background-color: gray;box-shadow:0 0 0px aquamarine;}
+    25%  {background-color: aquamarine;box-shadow:0 0 45px aquamarine;}
+    50%  {background-color: gray;box-shadow:0 0 10px aquamarine;}
+    75% {background-color: aquamarine;box-shadow:0 0 45px aquamarine;}
+    100% {background-color: gray;box-shadow:0 0 0px aquamarine;}
   }
 .safe-cell {
-    animation: safe-anim 2.1s ease-in-out;
+    animation: safe-anim 3.1s ease-in-out;
     background-color: aquamarine;
+    box-shadow:0 0 45px aquamarine;
+    border-color:blue;
+
 }
 
 .undo-btn {
     right: -47px;
     position: relative;
-    top: -18px;
+    top: -28px;
     height: 40px;
 }
 
@@ -275,6 +282,7 @@ button {
     left: -15px;
     position: relative;
     text-shadow: -2px 1px 1px black;
+    top:-20px
 }
 
 .modal {

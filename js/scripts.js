@@ -34,7 +34,8 @@ function initGame() {
         isFirstClick: true,
         safeClicks: 3,
         isSafeClickActive: false,
-        isManualMode:false
+        isManualMode: false,
+        isManualGame: false
     }
     getLocalStorageTimes()
     resetDOMElements()
@@ -111,17 +112,25 @@ function getMinesNegCount(board, posI, posJ) {
 function cellClicked(event, i, j) {
 
     if (!gGame.isOn) return
-    // console.log(event.button, event.target);
     var cell = gBoard[i][j]
     if (cell.isShown) return
     if (event.button === 0) {
+        if (gGame.isManualMode) {
+            cell.isMine = true
+            cell.isShown = true;
+            renderBoard(gBoard)
+            return
+        }
         if (gGame.isFirstClick) {
             {
                 gGame.isFirstClick = false
-                placeMines(gBoard, {
-                    i,
-                    j
-                })
+                if (!gGame.isManualGame) {
+                    
+                    placeMines(gBoard, {
+                        i,
+                        j
+                    })
+                }
                 startTimer()
                 setMineNegCount(gBoard)
             }
@@ -272,7 +281,7 @@ function getLocalStorageTimes() {
 }
 
 function setHintActive(el) {
-    if (gGame.isHintActive || !gGame.isOn) return
+    if (gGame.isHintActive || !gGame.isOn|| !gGame.isManualMode) return
     gGame.isHintActive = true;
     el.classList.add('used')
     el.disabled = true;
@@ -303,7 +312,7 @@ function hintShow(pos, board) {
 }
 
 function showRandomSafeCell() {
-    if (gGame.isSafeClickActive || !gGame.isOn) return
+    if (gGame.isSafeClickActive || !gGame.isOn || !gGame.isManualMode) return
     else {
         if (gGame.safeClicks <= 0) return
         gGame.isSafeClickActive = true;
@@ -317,7 +326,7 @@ function showRandomSafeCell() {
         setTimeout(() => {
             elCell.classList.remove('safe-cell')
             gGame.isSafeClickActive = false
-        }, 2000)
+        }, 3000)
     }
 
     document.querySelector('.safe-text span').innerText = gGame.safeClicks;
@@ -346,15 +355,31 @@ function resetDOMElements() {
     resetHints()
     renderLocalFastTime()
     document.querySelector('.safe-text span').innerText = gGame.safeClicks;
+    document.querySelector('.manual').classList.remove('hidden');
     setPlayImg(HAPPY_FACE)
 }
 
-function setManualMode(elBtn){
-    if(!gGame.isManualMode) {gGame.isManualMode= true;
+function setManualMode(elBtn) {
+    if (!gGame.isManualMode) {
+        gGame.isManualMode = true;
         elBtn.classList.add('manual-selected')
-    console.log('manual mode on')}
-    else{
-    gGame.isManualMode =false    
-    elBtn.classList.remove('manual-selected')
-    console.log('manual mode off')}
+        console.log('manual mode on')
+    } else {
+        gGame.isManualMode = false
+        elBtn.classList.add('hidden')            
+        var count= 0;
+        for (var i = 0; i < gBoard.length; i++) {
+            for (let j = 0; j < gBoard.length; j++) {
+                if (gBoard[i][j].isShown) count++  
+                gLevel.MINES = count  
+                gBoard[i][j].isShown = false
+            }
+            if (count > 0) {
+                gGame.isManualGame = true;
+            }
+            renderBoard(gBoard)
+        }
+        elBtn.classList.remove('manual-selected')
+        console.log('manual mode off')
+    }
 }
