@@ -19,18 +19,59 @@ p {
     text-align: center;
     user-select: none;
 }
-body  {
-    background: linear-gradient(315deg, #2C3E50 0%,  #000000 74%);
-    height:100vh;
-}
-body:not(.container) {
-    color:white;
-}
-button { 
-    font-family: game-font;
-    border-radius: 5%;
 
+body {
+    background: linear-gradient(315deg, #2C3E50 0%, #000000 74%);
+    height: 100vh;
+    z-index:1;
 }
+
+body:not(.container) {
+    color: white;
+}
+@keyframes bg-anim {
+    0% {
+        background-position-x: 0;
+        background-position-y: 510px;
+
+    }
+    100% {
+        background-position-x: 510px;
+        background-position-y: 0px;
+    }
+}
+.background { 
+    animation: bg-anim 10s linear infinite ;
+    top:0;
+    background-image:url(../img/mine.png);
+    position: absolute;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    background-repeat: repeat;
+    background-position-x:500px;
+    opacity:0.06;
+    overflow: hidden;
+    filter: contrast(10);
+    /* filter: invert(0.3); */
+    
+}
+
+button {
+    font-family: game-font;
+    transition:box-shadow 0.2s;
+    box-shadow:  0 1px 2px black;
+    border-radius: 0.5vh;
+}
+
+button:hover {
+    box-shadow: 0 2px 5px;
+}
+
+button:active {
+    box-shadow: inset 0 1px 2px black;
+}
+
 h1 {
     margin-top: 1.5%;
 }
@@ -45,14 +86,16 @@ h1 {
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 50px;
-    background: linear-gradient(173deg, #2C3E50 0%,  #a0a0a0 74%);
-    border: 10px outset rgb(118 142 153);
+    background-color: rgba(228, 228, 228, 0.87);
+    border: 5px inset rgb(168, 168, 168);
+    z-index:3;
 }
 
 table {
     width: 500px;
     height: 500px;
     margin: 0 auto;
+    margin-top: 10px;
     table-layout: fixed;
 
 }
@@ -70,16 +113,16 @@ tr.expert {
 }
 
 .cell {
-    border: 5px outset rgb(94 102 152);
+    border: 5px outset rgb(138, 138, 138);
     padding: 0;
     margin: 0;
     cursor: pointer;
-    background-color: rgb(138 155 179);
+    background-color: gray;
     font-size: 20px;
     width: auto;
     height: 30px;
     width: 30px;
-    transition: border-color 0.1s;
+    transition: background-color border-color 0.1s;
     ;
 }
 
@@ -88,14 +131,14 @@ tr.expert {
 }
 
 .cell.mine-bg {
-    background-color: rgba(255, 0, 0, 0.801);
+    background-color: rgba(255, 0, 0, 0.459);
     height: 30px;
     width: 30px;
 }
 
 .shown {
     border: 1px inset rgb(138, 138, 138);
-    background-color: rgb(214 229 255 / 74%);
+    background-color: rgba(138, 138, 138, 0.11);
 }
 
 .marked {
@@ -150,13 +193,14 @@ tr.expert {
     height: 50%;
     left: 3.5%;
     margin-bottom: 5px;
-    max-height:140px;
-    color:black;
+    max-height: 140px;
+    color: black;
 }
-.bottom{
-    top:-30px;
+
+.bottom {
+    top: -30px;
     position: relative;
-    left:0%
+    left: 0%
 }
 
 button {
@@ -164,37 +208,41 @@ button {
     padding: 5px 10px;
     margin: 0 0;
 }
-.dif-text { 
+
+.dif-text {
     display: inline-block;
     text-align: center;
-    width:100%;
-    top:-15px;
+    width: 100%;
+    top: -15px;
     position: relative;
-    color:white;
 }
+
 .size-btns {
     position: relative;
-    width:100%;
+    width: 100%;
     display: inline-block;
     text-align: center;
-    top:-5px;
+    top: -5px;
 }
+
 .size-btn {
-    width:120px;
-    font-size:15px;
+    width: 120px;
+    font-size: 15px;
 }
-.selected { 
-    background-color:gray;
-    color:white;
+
+.selected {
+    background-color: gray;
+    color: white;
 }
-.manual-selected { 
-    background-color:greenyellow;
+
+.manual-selected {
+    background-color: greenyellow;
 }
 
 .timer {
     display: inline-block;
     position: relative;
-    left: 6%;
+    left: 7%;
     color: white;
     background-color: black;
     padding: 8px 10px;
@@ -209,16 +257,36 @@ button {
 }
 
 .game-btn {
-    left: 5%;
+    left: 2.5%;
     position: relative;
-    font-size: 30px
+    font-size: 30px;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 255, 0.24);
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.479);
+    transition: all 0.2s;
+}
+
+.game-btn:hover {
+    box-shadow: 0 2px 5px;
+    height: 65px;
+    width: 65px;
+    transform: scale(1.03);
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.479);
+
+}
+
+.game-btn:active {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.74);
 }
 
 .hints {
     display: inline-block;
     width: 170px;
     height: 70%;
-    margin-left: 25px;
+    margin-left: 45px;
     position: relative;
 }
 
@@ -230,7 +298,7 @@ button {
     height: 70%;
     padding: 4px;
     font-size: 10px;
-    background-color: rgb(30, 126, 94);
+    background-color: rgb(143, 11, 132);
     color: white;
     cursor: pointer;
 }
@@ -260,20 +328,41 @@ button {
     position: relative;
     font-size: 10px;
     display: block;
-    width:100%;
+    width: 100%;
 }
+
 @keyframes safe-anim {
-    0%   {background-color: gray;box-shadow:0 0 0px aquamarine;}
-    25%  {background-color: aquamarine;box-shadow:0 0 45px aquamarine;}
-    50%  {background-color: gray;box-shadow:0 0 10px aquamarine;}
-    75% {background-color: aquamarine;box-shadow:0 0 45px aquamarine;}
-    100% {background-color: gray;box-shadow:0 0 0px aquamarine;}
-  }
+    0% {
+        background-color: gray;
+        box-shadow: 0 0 0px aquamarine;
+    }
+
+    25% {
+        background-color: aquamarine;
+        box-shadow: 0 0 45px aquamarine;
+    }
+
+    50% {
+        background-color: gray;
+        box-shadow: 0 0 10px aquamarine;
+    }
+
+    75% {
+        background-color: aquamarine;
+        box-shadow: 0 0 45px aquamarine;
+    }
+
+    100% {
+        background-color: gray;
+        box-shadow: 0 0 0px aquamarine;
+    }
+}
+
 .safe-cell {
     animation: safe-anim 3.1s ease-in-out;
     background-color: aquamarine;
-    box-shadow:0 0 45px aquamarine;
-    border-color:blue;
+    box-shadow: 0 0 45px aquamarine;
+    border-color: blue;
 
 }
 
@@ -292,7 +381,8 @@ button {
     left: -15px;
     position: relative;
     text-shadow: -2px 1px 1px black;
-    top:-20px
+    top: -20px;
+    color:rgba(255, 0, 0, 0.705);
 }
 
 .modal {
@@ -304,10 +394,10 @@ button {
     overflow: hidden;
     text-align: center;
     left: 30%;
-    background-color: rgba(255, 255, 255, 0.781);
-    border: 5px solid red;
-    padding: 10px 10px;
-    color:black;
+    background-color: rgba(37, 33, 51, 0.884);
+    border: 5px solid rgba(0, 0, 0, 0.315);
+    padding: 3% 10px;
+    color: whitesmoke;
 
 }
 

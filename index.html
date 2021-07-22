@@ -7,11 +7,12 @@
     <title>Sprint Thing</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body onload="initGame()"  oncontextmenu="return false;">
+  <body onload="initGame()"  >
+    <div class="background"></div>
     <header class="header">
       <h1>My Mine Sweeper</h1>
     </header>
-    <div class="container">
+    <div class="container " oncontextmenu="return false;">
       <div class="modal hidden">
         <h1>Yay ! You Win / Lose Or Something!</h1>
         <h3>Choose a difficulty to play again(or click Mr emoji)</h3>
@@ -63,7 +64,7 @@
           </button>
           <p class="safe-text">clicks left:<span>3</span></p>
         </div>
-        <div class="lives red"></div>
+        <div class="lives"></div>
         <button class="undo-btn" onclick="loadPrevGameState()">UNDO</button>
       </div>
       <div class="row bottom">

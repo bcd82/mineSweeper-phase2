@@ -371,9 +371,9 @@ function setManualMode(elBtn) {
                 gBoard[i][j].isShown = false
             }
             if (count > 0) {
+                elBtn.classList.add('hidden')
                 gGame.isManualGame = true;
                 gLevel.MINES = count
-                elBtn.classList.add('hidden')
             } else {
                 gGame.isManualGame = false;
             }
@@ -383,6 +383,5 @@ function setManualMode(elBtn) {
         elBtn.classList.remove('manual-selected')
         console.log('manual mode off')
         gGame.isManualMode = false
-
     }
 }
