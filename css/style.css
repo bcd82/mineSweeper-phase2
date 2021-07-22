@@ -91,7 +91,7 @@ button {
     box-shadow: 0 1px 2px black;
     border-radius: 0.5vh;
     transform: scale(1);
-
+    cursor: pointer;
 }
 
 button:not(.selected):hover {
@@ -353,8 +353,6 @@ button {
     transform: scale(1.03);
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.479);
     background-color: rgba(22, 22, 255, 0.466)
-
-
 }
 
 .game-btn:active {
