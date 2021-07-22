@@ -92,6 +92,7 @@ function renderLife() {
 function showModal(gameResult) {
     var elModal = document.querySelector('.modal')
     elModal.classList.remove('hidden')
+    elModal.classList.add('modal-pos')
     if (gameResult === 'win') {
         elModal.querySelector('h1').innerText = 'YAY !\n you are a mine sweeping master \n I\'m proud of you'
     } else {
@@ -102,7 +103,10 @@ function showModal(gameResult) {
 
 function hideModal() {
     var elModal = document.querySelector('.modal')
-    elModal.classList.add('hidden')
+    elModal.classList.remove('modal-pos')
+    setTimeout(()=>{
+        elModal.classList.add('hidden') 
+    },500)
 }
 
 function setPlayImg(icon) {
