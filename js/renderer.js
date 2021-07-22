@@ -81,8 +81,7 @@ function renderLife() {
         btnIcon = WORRIED_FACE;
     } else if (gGame.playerLives === 0) {
         heartStr = NO_HEARTS
-    }
-    else if (!gGame.playerLive) {
+    } else if (!gGame.playerLive) {
         btnIcon = UNDO_FACE
     }
     setPlayImg(btnIcon)
@@ -104,9 +103,9 @@ function showModal(gameResult) {
 function hideModal() {
     var elModal = document.querySelector('.modal')
     elModal.classList.remove('modal-pos')
-    setTimeout(()=>{
-        elModal.classList.add('hidden') 
-    },500)
+    setTimeout(() => {
+        elModal.classList.add('hidden')
+    }, 500)
 }
 
 function setPlayImg(icon) {
@@ -142,11 +141,12 @@ function changeBgClr(result) {
         document.querySelector('.background-overlay').classList.add('half-opacity')
     }
 }
-function removeBgClr(){
+
+function removeBgClr() {
     document.querySelector('.background-overlay').classList.remove('half-opacity')
-    setTimeout(()=>{
+    setTimeout(() => {
         document.querySelector('.background-overlay').classList.remove('dead')
         document.querySelector('.background-overlay').classList.remove('win')
-    },2000)
+    }, 2000)
 
 }

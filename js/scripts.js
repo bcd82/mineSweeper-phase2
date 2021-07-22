@@ -159,7 +159,7 @@ function cellClicked(event, i, j) {
     }
     if (event.button === 2) {
         if (gGame.isManualMode) return
-         if (gGame.isFirstClick) {
+        if (gGame.isFirstClick) {
             gGame.isFirstClick = false
             if (!gGame.isManualGame) {
                 document.querySelector('.manual').classList.add('hidden')
@@ -170,8 +170,8 @@ function cellClicked(event, i, j) {
             }
             startTimer()
             setMineNegCount(gBoard)
-         }
-            
+        }
+
         cellMarked(i, j, gBoard)
     }
     renderBoard(gBoard)
@@ -254,10 +254,10 @@ function clearTimer() {
 function winGame() {
     changeBgClr('win')
     document.querySelector('.game-btn').classList.add('game-btn-anim')
-    setTimeout(()=>{
+    setTimeout(() => {
         showModal('win')
-    },1000)
-    
+    }, 1000)
+
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
             var cell = gBoard[i][j]
@@ -271,9 +271,9 @@ function winGame() {
 
 function loseGame() {
     changeBgClr('lose')
-    setTimeout(()=>{
+    setTimeout(() => {
         showModal('lose')
-    },1000)
+    }, 1000)
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
             var cell = gBoard[i][j]
@@ -337,7 +337,7 @@ function showRandomSafeCell(el) {
     if (gGame.isSafeClickActive || !gGame.isOn || gGame.isManualMode) return
     else {
         if (gGame.safeClicks <= 0) {
-           
+
             return
         }
         gGame.isSafeClickActive = true;
@@ -348,7 +348,7 @@ function showRandomSafeCell(el) {
         elCell.classList.add('safe-cell')
         console.log(elCell)
         gGame.safeClicks--
-        if (gGame.safeClicks === 0){
+        if (gGame.safeClicks === 0) {
             el.classList.add('selected')
         }
         setTimeout(() => {
@@ -400,8 +400,8 @@ function setManualMode(elBtn) {
     if (!gGame.isManualMode) {
         gGame.isManualMode = true;
         elBtns.forEach(btn => {
-        btn.classList.add('selected')
-    });
+            btn.classList.add('selected')
+        });
         elBtn.classList.add('manual-selected')
         console.log('manual mode on')
         elBtn.innerText = "PLAY"
@@ -427,11 +427,11 @@ function setManualMode(elBtn) {
         }
         elBtn.innerText = "MANUAL"
         elBtn.classList.remove('manual-selected')
-        if(gLevel.SIZE === 4){
+        if (gLevel.SIZE === 4) {
             elBtns[0].classList.add('selected');
-        } else if(gLevel.SIZE === 8) { 
+        } else if (gLevel.SIZE === 8) {
             elBtns[1].classList.add('selected');
-        }else {
+        } else {
             elBtns[2].classList.add('selected');
         }
         console.log('manual mode off')
