@@ -93,7 +93,7 @@ function showModal(gameResult) {
     var elModal = document.querySelector('.modal')
     elModal.classList.remove('hidden')
     if (gameResult === 'win') {
-        elModal.querySelector('h1').innerText = 'YAY !\n you are a mine sweeping master \n good for you dude'
+        elModal.querySelector('h1').innerText = 'YAY !\n you are a mine sweeping master \n I\'m proud of you'
     } else {
         elModal.querySelector('h1').innerText = 'Sad face !\n you were blown up :(\n R.I.P you '
 

@@ -39,6 +39,8 @@ function initGame() {
         isManualMode: false,
         isManualGame: false
     }
+    gLevel.MINES = gLevel.SIZE === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / 6);
+
     getLocalStorageTimes()
     resetDOMElements()
     renderBoard(gBoard)
@@ -140,7 +142,7 @@ function cellClicked(event, i, j) {
         cloneGameState()
 
         if (gGame.isHintActive) {
-            hintShow({
+            showHint({
                 i,
                 j
             }, gBoard)
@@ -294,7 +296,7 @@ function setHintActive(el) {
     el.disabled = true;
 }
 
-function hintShow(pos, board) {
+function showHint(pos, board) {
     gGame.isHintActive = false;
     var exposedCells = [];
     var exposedCellsVisibility = [];
@@ -381,8 +383,12 @@ function resetDOMElements() {
 }
 
 function setManualMode(elBtn) {
+    var elBtns = document.querySelectorAll('.size-btn')
     if (!gGame.isManualMode) {
         gGame.isManualMode = true;
+        elBtns.forEach(btn => {
+        btn.classList.add('selected')
+    });
         elBtn.classList.add('manual-selected')
         console.log('manual mode on')
         elBtn.innerText = "PLAY"
@@ -402,9 +408,19 @@ function setManualMode(elBtn) {
                 gGame.isManualGame = false;
             }
             renderBoard(gBoard)
+            elBtns.forEach(btn => {
+                btn.classList.remove('selected')
+            })
         }
         elBtn.innerText = "MANUAL"
         elBtn.classList.remove('manual-selected')
+        if(gLevel.SIZE === 4){
+            elBtns[0].classList.add('selected');
+        } else if(gLevel.SIZE === 8) { 
+            elBtns[1].classList.add('selected');
+        }else {
+            elBtns[2].classList.add('selected');
+        }
         console.log('manual mode off')
         gGame.isManualMode = false
     }
