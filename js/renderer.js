@@ -114,6 +114,7 @@ function resetHints() {
         hint.disabled = false;
     });
 }
+
 function renderLocalFastTime() {
     var elFastTimeSpan = document.querySelector('.fast-time');
     if (gLevel.SIZE === 4) {
@@ -123,4 +124,22 @@ function renderLocalFastTime() {
     } else {
         elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:00';
     }
+}
+
+function changeBgClr(result) {
+    if (result === 'win') {
+        document.querySelector('.background-overlay').classList.add('win')
+        document.querySelector('.background-overlay').classList.add('half-opacity')
+    } else {
+        document.querySelector('.background-overlay').classList.add('dead')
+        document.querySelector('.background-overlay').classList.add('half-opacity')
+    }
+}
+function removeBgClr(){
+    document.querySelector('.background-overlay').classList.remove('half-opacity')
+    setTimeout(()=>{
+        document.querySelector('.background-overlay').classList.remove('dead')
+        document.querySelector('.background-overlay').classList.remove('win')
+    },2000)
+
 }

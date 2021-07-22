@@ -21,6 +21,7 @@ var gFastestTimes;
 var gTimerInterval;
 
 function initGame() {
+
     if (gTimerInterval) clearInterval(gTimerInterval)
     gBoard = buildBoard(gLevel.SIZE)
     gGame = {
@@ -153,6 +154,7 @@ function cellClicked(event, i, j) {
         showCell(i, j, gBoard)
     }
     if (event.button === 2) {
+        if (gGame.isManualMode) return
         cellMarked(i, j, gBoard)
     }
     renderBoard(gBoard)
@@ -233,6 +235,7 @@ function clearTimer() {
 }
 
 function winGame() {
+    changeBgClr('win')
     showModal('win')
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
@@ -246,6 +249,7 @@ function winGame() {
 }
 
 function loseGame() {
+    changeBgClr('lose')
     showModal('lose')
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
@@ -345,6 +349,7 @@ function getSafeCells(board) {
 
 function resetDOMElements() {
     clearTimer()
+    removeBgClr()
     hideModal()
     renderLife()
     resetHints()
