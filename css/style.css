@@ -22,7 +22,8 @@ p {
 h1 {
     margin-top: 1.5%;
 }
-.hidden { 
+
+.hidden {
     visibility: hidden;
 }
 
@@ -44,17 +45,19 @@ table {
     /* border: 1px solid gray; */
     margin: 0 auto;
     table-layout: fixed;
-    
+
 }
 
-tr.beginner{
+tr.beginner {
     height: 20%;
 }
-tr.medium{
-    height:10%;
+
+tr.medium {
+    height: 10%;
 }
-tr.expert{
-    height:8%;
+
+tr.expert {
+    height: 8%;
 }
 
 .cell {
@@ -62,28 +65,33 @@ tr.expert{
     padding: 0;
     margin: 0;
     cursor: pointer;
-    background-color: gray ;
-    font-size:20px;
-    width:auto;
+    background-color: gray;
+    font-size: 20px;
+    width: auto;
     height: 30px;
-    width:30px;
+    width: 30px;
     transition: background-color 0.1s;
 }
-.cell:not(.shown,.marked):hover {
+
+.cell:not(.shown, .marked):hover {
     background-color: pink;
 }
-.cell.mine-bg { 
+
+.cell.mine-bg {
     background-color: rgba(255, 0, 0, 0.459);
-    height:30px;
-    width:30px;
+    height: 30px;
+    width: 30px;
 }
+
 .shown {
     border: 1px inset rgb(138, 138, 138);
-    background-color:rgba(138, 138, 138, 0.11) ;
+    background-color: rgba(138, 138, 138, 0.11);
 }
-.marked { 
-    background-color:rgb(126, 117, 117)
+
+.marked {
+    background-color: rgb(126, 117, 117)
 }
+
 .blue {
     color: blue
 }
@@ -95,20 +103,25 @@ tr.expert{
 .green {
     color: green
 }
-.purple { 
-    color:purple;
+
+.purple {
+    color: purple;
 }
-.salmon { 
-    color:salmon
+
+.salmon {
+    color: salmon
 }
-.yellow{
+
+.yellow {
     color: rgb(0, 99, 112);
 }
-.darkblue{
+
+.darkblue {
     color: darkblue;
 }
+
 .pink {
-    color:rgb(240, 70, 98);
+    color: rgb(240, 70, 98);
 }
 
 .mine {
@@ -120,25 +133,46 @@ tr.expert{
     padding: 20px 20px;
     width: auto;
     max-width: 100%;
-    height: 155px;
-}
-.row{
-    height:50%;
-    left: 3.5%;
-    margin-bottom: 5px;
+    height: 140px;
 }
 
+.row {
+    height: 50%;
+    left: 3.5%;
+    margin-bottom: 5px;
+    max-height:140px
+}
+.bottom{
+    top:-50px;
+    position: relative;
+    left:0%
+}
 
 button {
     font-size: 16px;
     padding: 5px 10px;
     margin: 0 0;
 }
-
+.dif-text { 
+    display: inline-block;
+    text-align: center;
+    width:100%;
+    top:-15px;
+    position: relative;
+}
 .size-btns {
     position: relative;
-    width: auto;
+    width:100%;
     display: inline-block;
+    text-align: center;
+    top:-5px;
+}
+.size-btn {
+    width:100px;
+}
+.selected { 
+    background-color:gray;
+    color:white;
 }
 
 .timer {
@@ -148,99 +182,114 @@ button {
     color: white;
     background-color: black;
     padding: 8px 10px;
-    width:200px;
+    width: 200px;
     box-shadow: inset gray 0 0 0px 2px;
-    font-size:12px;
+    font-size: 12px;
 }
-.timer::before{
-    content:"play time : ";
+
+.timer::before {
+    content: "play time : ";
     position: relative;
 }
+
 .game-btn {
-    left:4%;
+    left: 5%;
     position: relative;
-    font-size:30px
-    
+    font-size: 30px
 }
-.hints { 
+
+.hints {
     display: inline-block;
-    width:170px;
-    height:70%;
-    margin-left:25px;
+    width: 170px;
+    height: 70%;
+    margin-left: 25px;
     position: relative;
 }
-.hint { 
+
+.hint {
     display: inline-block;
-    width:27%;
+    width: 27%;
     text-align: center;
     position: relative;
-    height:70%;
-    padding:4px;
-    font-size:10px;
+    height: 70%;
+    padding: 4px;
+    font-size: 10px;
     background-color: black;
-    color:white;
+    color: white;
     cursor: pointer;
 }
 
-.used { 
+.used {
     background-color: gray;
-    color:darkgray;
+    color: darkgray;
 }
-.safe-container{
+
+.safe-container {
     position: relative;
     display: inline-block;
-    width:100px;
-    top:5%;
-    height:100px;
-    left:-50px
-    
+    width: 100px;
+    top: 15%;
+    height: 100px;
+    left: -50px
 }
-.safe-btn{
+
+.safe-btn {
     position: relative;
-    height:40%;
+    height: 40%;
     display: block;
 }
-.safe-text { 
-    margin-top:5px;
-    height:40%;
+
+.safe-text {
+    margin-top: 5px;
+    height: 40%;
     position: relative;
-    font-size:10px;
+    font-size: 10px;
     display: block;
 }
-.safe-cell{
+@keyframes safe-anim {
+    0%   {background-color: gray;}
+    25%  {background-color: aquamarine;}
+    50%  {background-color: gray;}
+    75% {background-color: aquamarine;}
+    100% {background-color: gray;}
+  }
+.safe-cell {
+    animation: safe-anim 2.1s ease-in-out;
     background-color: aquamarine;
 }
 
 .undo-btn {
-    right:-47px;
+    right: -47px;
     position: relative;
-    top:-18px;
-    height:40px;
+    top: -18px;
+    height: 40px;
 }
 
 
-.lives { 
-    width:200px;
+.lives {
+    width: 200px;
     display: inline-block;
-    font-size:50px;
-    left:-10px;
+    font-size: 50px;
+    left: -15px;
     position: relative;
-    text-shadow: -2px 1px  1px black;
+    text-shadow: -2px 1px 1px black;
 }
-.modal { 
-    position:absolute;
-    top:400px;
-    width:40%;
-    max-height:300px;
-    height:300px;
+
+.modal {
+    position: absolute;
+    top: 400px;
+    width: 40%;
+    max-height: 300px;
+    height: 300px;
     overflow: hidden;
     text-align: center;
-    left:30%;
+    left: 30%;
     background-color: rgba(255, 255, 255, 0.781);
-    border:5px solid red;
-    padding:20px 10px;
+    border: 5px solid red;
+    padding: 20px 10px;
 }
+
 .modal h1 {
-    margin-bottom:20px;
+    margin-bottom: 20px;
     position: relative;
 }

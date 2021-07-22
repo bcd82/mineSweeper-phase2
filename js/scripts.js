@@ -24,10 +24,8 @@ function initGame() {
     if (gTimerInterval) {
         clearInterval(gTimerInterval)
     }
-    clearTimer()
-    hideModal()
-    gBoard = buildBoard(gLevel.SIZE)
 
+    gBoard = buildBoard(gLevel.SIZE)
     gGame = {
         isOn: true,
         shownCount: 0,
@@ -41,15 +39,11 @@ function initGame() {
         isSafeClickActive: false
     }
     getLocalStorageTimes()
+    resetDOMElements()
     renderBoard(gBoard)
-    renderLife()
-    resetHints()
-    renderLocalFastTime()
-    setPlayImg(HAPPY_FACE)
+
     gBoardHistoryStates = []
     gGameHistoryStates = []
-
-    // console.log(gBoard)
 }
 
 function buildBoard(size) {
@@ -263,9 +257,14 @@ function gameOver() {
     renderBoard(gBoard)
 }
 
-function changeSize(size) {
+function changeSize(size, elBtn) {
     gLevel.SIZE = size;
     gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 6);
+    var elBtns = document.querySelectorAll('.size-btn')
+    elBtns.forEach(btn => {
+        btn.classList.remove('selected')
+    });
+    elBtn.classList.add('selected');
     gameOver()
     initGame()
 }
@@ -276,24 +275,13 @@ function getLocalStorageTimes() {
 
 }
 
-function renderLocalFastTime() {
-    var elFastTimeSpan = document.querySelector('.fast-time');
-    if (gLevel.SIZE === 4) {
-        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:00';
-    } else if (gLevel.SIZE === 8) {
-        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:00';
-    } else {
-        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:00';
-    }
-}
-
 function setHintActive(el) {
     if (gGame.isHintActive) return
-    
     gGame.isHintActive = true;
     el.classList.add('used')
-    el.setAttribute('disabled','true')
+    el.disabled = true;
 }
+
 function hintShow(pos, board) {
     gGame.isHintActive = false;
     var exposedCells = [];
@@ -317,22 +305,23 @@ function hintShow(pos, board) {
         renderBoard(gBoard)
     }, 1000)
 }
+
 function showRandomSafeCell() {
     if (gGame.isSafeClickActive) return
-     else {
+    else {
         if (gGame.safeClicks <= 0) return
-         gGame.isSafeClickActive = true;
+        gGame.isSafeClickActive = true;
         var safeCells = getSafeCells(gBoard)
-        var randIdx = safeCells[getRandomInt(0,safeCells.length)] 
-        
+        var randIdx = safeCells[getRandomInt(0, safeCells.length)]
+
         var elCell = document.querySelector(`td[onmousedown*='${randIdx.i},${randIdx.j}']`)
         elCell.classList.add('safe-cell')
         console.log(elCell)
         gGame.safeClicks--
-        setTimeout(()=>{
+        setTimeout(() => {
             elCell.classList.remove('safe-cell')
             gGame.isSafeClickActive = false
-        },2000)
+        }, 2000)
     }
 
     document.querySelector('.safe-text span').innerText = gGame.safeClicks;
@@ -352,4 +341,14 @@ function getSafeCells(board) {
         }
     }
     return safeCells
+}
+
+function resetDOMElements() {
+    clearTimer()
+    hideModal()
+    renderLife()
+    resetHints()
+    renderLocalFastTime()
+    document.querySelector('.safe-text span').innerText = gGame.safeClicks;
+    setPlayImg(HAPPY_FACE)
 }

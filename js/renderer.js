@@ -114,3 +114,13 @@ function resetHints() {
         hint.disabled = false;
     });
 }
+function renderLocalFastTime() {
+    var elFastTimeSpan = document.querySelector('.fast-time');
+    if (gLevel.SIZE === 4) {
+        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:00';
+    } else if (gLevel.SIZE === 8) {
+        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:00';
+    } else {
+        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:00';
+    }
+}

@@ -18,10 +18,11 @@
       </div>
       <div class="above-table">
         <div class="row">
+          <p class="dif-text">Choose your difficulty</p>
           <div class="size-btns">
-            <button onclick="changeSize(4,this)">Beginner</button>
-            <button onclick="changeSize(8,this)">Medium</button>
-            <button onclick="changeSize(12,this)">Expert</button>
+            <button class="size-btn selected" onclick="changeSize(4,this)">Beginner</button>
+            <button class="size-btn" onclick="changeSize(8,this)">Medium</button>
+            <button class="size-btn" onclick="changeSize(12,this)">Expert</button>
           </div>
           <!-- <p class="timer-text"> play time</p> -->
         
@@ -51,7 +52,7 @@
         <div class="lives red"></div>
         <button class="undo-btn" onclick="loadPrevGameState()">UNDO</button>
       </div>
-      <div class="row">
+      <div class="row bottom">
         Fastest Time for this difficulty : <span class="fast-time">0.00</span>
       </div>
     </div>
