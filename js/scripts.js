@@ -14,15 +14,7 @@ var gLevel = {
     SIZE: 4,
     MINES: 3
 }
-var gGame = {
-    isOn: true,
-    shownCount: 0,
-    markedCount: 0,
-    timerInterval: null,
-    secsPassed: 0,
-    startTime: 0,
-    playerLives: 3
-}
+var gGame
 var gBoardHistoryStates;
 var gGameHistoryStates;
 var gFastestTimes;
@@ -44,7 +36,9 @@ function initGame() {
         startTime: 0,
         playerLives: 3,
         isHintActive: false,
-        isFirstClick: true
+        isFirstClick: true,
+        safeClicks: 3,
+        isSafeClickActive: false
     }
     getLocalStorageTimes()
     renderBoard(gBoard)
@@ -160,18 +154,14 @@ function cellClicked(event, i, j) {
     if (event.button === 2) {
         cellMarked(i, j, gBoard)
     }
-
     renderBoard(gBoard)
     checkGameOver()
-
 }
 
 function showCell(posI, posJ, board) {
     var cell = gBoard[posI][posJ]
     cell.isShown = true;
     gGame.shownCount++;
-
-
     if (cell.minesAroundCount === 0 && !cell.isMine) {
         expandShow({
             i: posI,
@@ -181,7 +171,6 @@ function showCell(posI, posJ, board) {
 }
 
 function expandShow(pos, board) {
-
     for (var i = pos.i - 1; i <= pos.i + 1; i++) {
         if (i < 0 || i >= board.length) continue
         for (var j = pos.j - 1; j <= pos.j + 1; j++) {
@@ -312,16 +301,55 @@ function getLocalStorageTimes() {
 function renderLocalFastTime() {
     var elFastTimeSpan = document.querySelector('.fast-time');
     if (gLevel.SIZE === 4) {
-        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:000';
+        elFastTimeSpan.innerText = gFastestTimes.beginnerTime ? gFastestTimes.beginnerTime : '0:00';
     } else if (gLevel.SIZE === 8) {
-        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:000';
+        elFastTimeSpan.innerText = gFastestTimes.mediumTime ? gFastestTimes.mediumTime : '0:00';
     } else {
-        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:000';
+        elFastTimeSpan.innerText = gFastestTimes.expertTime ? gFastestTimes.expertTime : '0:00';
     }
 }
 
 function setHintActive(el) {
-    if(gGame.isHintActive) return
+    if (gGame.isHintActive) return
     gGame.isHintActive = true;
     el.classList.add('hidden')
+}
+
+function showRandomSafeCell() {
+    if (gGame.isSafeClickActive) {
+        gGame.isSafeClickActive = false;
+        gGame.safeClicks++;
+    } else {
+        if (gGame.safeClicks <= 0) return
+         gGame.isSafeClickActive = true;
+        var safeCells = getSafeCells(gBoard)
+        var randIdx = safeCells[getRandomInt(0,safeCells.length)] 
+        
+        var elCell = document.querySelector(`td[onmousedown*='${randIdx.i},${randIdx.j}']`)
+        elCell.classList.add('safe-cell')
+        console.log(elCell)
+        gGame.safeClicks--
+        setTimeout(()=>{
+            elCell.classList.remove('safe-cell')
+            gGame.isSafeClickActive = false
+        },2000)
+    }
+
+    document.querySelector('.safe-text span').innerText = gGame.safeClicks;
+}
+
+function getSafeCells(board) {
+    var safeCells = []
+    for (var i = 0; i < board.length; i++) {
+        for (let j = 0; j < board.length; j++) {
+            var cell = board[i][j];
+            if (!cell.isMine && !cell.isMarked && !cell.isShown) {
+                safeCells.push({
+                    i,
+                    j
+                })
+            }
+        }
+    }
+    return safeCells
 }
