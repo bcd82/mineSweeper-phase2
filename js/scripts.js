@@ -239,7 +239,7 @@ function winGame() {
     document.querySelector('.game-btn').classList.add('game-btn-anim')
     setTimeout(()=>{
         showModal('win')
-    },500)
+    },1000)
     
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
@@ -256,7 +256,7 @@ function loseGame() {
     changeBgClr('lose')
     setTimeout(()=>{
         showModal('lose')
-    },500)
+    },1000)
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
             var cell = gBoard[i][j]
