@@ -83,13 +83,18 @@ body:not(.container) {
 }
 button {
     font-family: game-font;
-    transition: box-shadow 0.2s;
+    transition: box-shadow transform 0.2s;
     box-shadow: 0 1px 2px black;
     border-radius: 0.5vh;
+    transform: scale(1);
+
 }
 
-button:hover {
+button:not(.selected):hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.582);
+    transform: scale(1.04);
+    transition: 0.15s;
+
 }
 
 button:active {
@@ -359,6 +364,10 @@ button {
     background-color: rgb(143, 11, 132);
     color: white;
     cursor: pointer;
+}
+.hint:hover{
+    background-color: rgb(189, 50, 177);
+
 }
 
 .used {
