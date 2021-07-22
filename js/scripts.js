@@ -237,7 +237,10 @@ function clearTimer() {
 function winGame() {
     changeBgClr('win')
     document.querySelector('.game-btn').classList.add('game-btn-anim')
-    showModal('win')
+    setTimeout(()=>{
+        showModal('win')
+    },500)
+    
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
             var cell = gBoard[i][j]
@@ -251,7 +254,9 @@ function winGame() {
 
 function loseGame() {
     changeBgClr('lose')
-    showModal('lose')
+    setTimeout(()=>{
+        showModal('lose')
+    },500)
     for (var i = 0; i < gBoard.length; i++)
         for (var j = 0; j < gBoard.length; j++) {
             var cell = gBoard[i][j]
