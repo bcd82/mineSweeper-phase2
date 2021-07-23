@@ -7,7 +7,7 @@ const NEUTRAL_FACE = '😐'
 const WORRIED_FACE = '😯'
 const DEAD_FACE = '💀'
 const WIN_FACE = '🥳'
-const UNDO_FACE = '🤔'
+const UNDO_FACE = '😀'
 const NO_HEARTS = '👻'
 
 var gBoard;
@@ -37,7 +37,8 @@ function initGame() {
         safeClicks: 3,
         isSafeClickActive: false,
         isManualMode: false,
-        isManualGame: false
+        isManualGame: false,
+        isNewFastestTime:false
     }
     gLevel.MINES = gLevel.SIZE === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / 6);
 
@@ -70,7 +71,7 @@ function placeMines(board, firstPos) {
     for (var i = 0; i < gLevel.MINES; i++) {
         var randIdx = getRandomInt(0, tempBoard.length)
         var randPos = tempBoard[randIdx]
-        console.log(tempBoard[randIdx])
+        //console.log(tempBoard[randIdx])
         board[randPos.i][randPos.j].isMine = true;
         tempBoard.splice(randIdx, 1)
     }
@@ -217,22 +218,22 @@ function cellMarked(i, j, board) {
     if (cell.isShown) return
     cell.isMarked = cell.isMarked ? false : true;
     gGame.markedCount = cell.isMarked ? ++gGame.markedCount : --gGame.markedCount;
-    // console.log(gGame.markedCount)
+    //console.log(gGame.markedCount)
 }
 
 function checkGameOver() {
     if (gGame.playerLives > 0) {
         var minesNotShown = gLevel.MINES - (3 - gGame.playerLives);
-        // console.log('needs to be shown to win:', ((gLevel.SIZE ** 2) - (gGame.markedCount)))
-        // console.log('shown', gGame.shownCount)
+        //console.log('needs to be shown to win:', ((gLevel.SIZE ** 2) - (gGame.markedCount)))
+        //console.log('shown', gGame.shownCount)
         if (gGame.markedCount === minesNotShown) {
             if (gGame.shownCount === ((gLevel.SIZE ** 2) - (gGame.markedCount))) {
                 winGame()
-                console.log('won')
+                //console.log('won')
             }
         }
     } else {
-        console.log('lost')
+        //console.log('lost')
         loseGame()
     }
 }
@@ -248,10 +249,11 @@ function startTimer() {
 }
 
 function clearTimer() {
-    document.querySelector('.timer').innerText = '0:00'
+    document.querySelector('.timer').innerText = '0.00'
 }
 
 function winGame() {
+    checkLocalStorageTime()
     changeBgClr('win')
     document.querySelector('.game-btn').classList.add('game-btn-anim')
     setTimeout(() => {
@@ -264,7 +266,6 @@ function winGame() {
             cell.isShown = true;
         }
     setPlayImg(WIN_FACE)
-    checkLocalStorageTime()
     gameOver()
 
 }
@@ -346,7 +347,7 @@ function showRandomSafeCell(el) {
 
         var elCell = document.querySelector(`td[onmousedown*='${randIdx.i},${randIdx.j}']`)
         elCell.classList.add('safe-cell')
-        console.log(elCell)
+        //console.log(elCell)
         gGame.safeClicks--
         if (gGame.safeClicks === 0) {
             el.classList.add('selected')
@@ -403,7 +404,7 @@ function setManualMode(elBtn) {
             btn.classList.add('selected')
         });
         elBtn.classList.add('manual-selected')
-        console.log('manual mode on')
+        //console.log('manual mode on')
         elBtn.innerText = "PLAY"
 
     } else {
@@ -434,7 +435,7 @@ function setManualMode(elBtn) {
         } else {
             elBtns[2].classList.add('selected');
         }
-        console.log('manual mode off')
+        //console.log('manual mode off')
         gGame.isManualMode = false
     }
 }

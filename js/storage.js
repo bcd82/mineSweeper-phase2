@@ -27,7 +27,7 @@ function cloneGameState() {
 
 function loadPrevGameState(el) {
     if (gBoardHistoryStates.length <= 1 || !gGame.isOn) return
-    console.log(gGameHistoryStates)
+    //console.log(gGameHistoryStates)
     gBoard = gBoardHistoryStates[gBoardHistoryStates.length - 1]
     gBoardHistoryStates.pop()
     gGame.shownCount = gGameHistoryStates[gGameHistoryStates.length - 1].shownCount
@@ -47,18 +47,21 @@ function checkLocalStorageTime() {
     let timeToComplete = document.querySelector('.timer').innerText
     if (gLevel.SIZE === 4) {
         if (+gFastestTimes.beginnerTime > +timeToComplete || !gFastestTimes.beginnerTime)
-            localStorage.setItem('beginnerTime', timeToComplete)
+            gGame.isNewFastestTime = true;
+        localStorage.setItem('beginnerTime', timeToComplete)
     } else if (gLevel.SIZE === 8) {
         if (+gFastestTimes.mediumTime > +timeToComplete || !gFastestTimes.mediumTime)
             localStorage.setItem('mediumTime', timeToComplete)
+            gGame.isNewFastestTime = true;
     } else {
         if (+gFastestTimes.expertTime > +timeToComplete || !gFastestTimes.expertTime)
+            gGame.isNewFastestTime = true;
             localStorage.setItem('expertTime', timeToComplete)
     }
-    console.log(localStorage)
+    //console.log(localStorage)
 }
 
 function getLocalStorageTimes() {
     gFastestTimes = localStorage;
-    console.log(gFastestTimes)
+    //console.log(gFastestTimes)
 }

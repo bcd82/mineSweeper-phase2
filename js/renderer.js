@@ -94,8 +94,12 @@ function showModal(gameResult) {
     elModal.classList.add('modal-pos')
     if (gameResult === 'win') {
         elModal.querySelector('h1').innerText = 'YAY !\n you are a mine sweeping master \n I\'m proud of you'
+        if (gGame.isNewFastestTime) elModal.querySelector('h2').innerText = `new fastest time:  ${gGame.secsPassed} seconds! \n `
+        else
+            elModal.querySelector('h2').innerText = `it only took you ${gGame.secsPassed} seconds! \n `
     } else {
-        elModal.querySelector('h1').innerText = 'Sad face :( \n you were blown up.\n R.I.P you '
+        elModal.querySelector('h1').innerText = 'Sad face :( \n you were blown up.\n '
+        elModal.querySelector('h2').innerText = 'R.I.P you'
 
     }
 }

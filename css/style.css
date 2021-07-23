@@ -241,11 +241,13 @@ tr.expert {
     max-height: 140px;
     color: black;
 }
- .top { 
-     height:50px;
-     top:20%;
-     position: relative;
- }
+
+.top {
+    height: 50px;
+    top: 20%;
+    position: relative;
+}
+
 .bottom {
     top: -30px;
     position: relative;
@@ -309,11 +311,11 @@ tr.expert {
     0% {
         background-position: 0% 50%
     }
-    
+
     50% {
         background-position: 100% 50%
     }
-    
+
     100% {
         background-position: 0% 50%
     }
@@ -327,26 +329,27 @@ tr.expert {
 
 .game-btn {
     position: relative;
-    font-size: 35px;
-    height: 65px;
-    width: 65px;
+    font-size: 50px;
+    height: 75px;
+    width: 75px;
     border-radius: 50%;
     border: none;
-    top:-17%;
-    margin-right:5px;
+    top: -11%;
+    margin-right: 5px;
     background-color: rgba(0, 0, 255, 0.24);
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.479);
     transition: all 0.1s;
 }
+
 .game-btn p {
     position: relative;
-    left:-2px;
+    left: -12%;
+    top: -3%;
 }
 
 .game-btn:hover {
     box-shadow: 0 2px 5px;
-    height: 65px;
-    width: 65px;
+
     transform: scale(1.03);
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.479);
     background-color: rgba(22, 22, 255, 0.466)
@@ -360,7 +363,7 @@ tr.expert {
     display: inline-block;
     width: 60%;
     height: 90%;
-    left:5%;
+    left: 5%;
     position: relative;
 }
 
@@ -380,6 +383,7 @@ tr.expert {
 .hint:not(.used):hover {
     background-color: rgb(189, 50, 177);
 }
+
 .timer {
     display: inline-block;
     box-sizing: content-box;
@@ -388,7 +392,7 @@ tr.expert {
     background-color: rgb(37, 18, 88);
     padding: 8px 0px 8px 10px;
     width: 35%;
-    left:-40px;
+    left: -40px;
     box-shadow: inset gray 0 0 0px 2px;
     font-size: 12px;
 }
@@ -409,7 +413,7 @@ tr.expert {
     width: 100px;
     top: 15%;
     height: 100px;
-    left:-2.5%;
+    left: -2.5%;
 }
 
 .safe-btn {
@@ -454,10 +458,11 @@ tr.expert {
 }
 
 .safe-cell {
-    animation: safe-anim 3.1s ease-in-out;
-    background-color: aquamarine;
+    background: linear-gradient(270deg, #c598ed, #ed98bb, #edcf98, #98ed99, #98d4ed, #98a0ed, #d098ed);
+    animation: colorCicle 3.1s ease-in-out;
+    background-size: 1400% 1400%;
     box-shadow: 0 0 45px aquamarine;
-    border-color: blue;
+    border-color: rgba(0, 0, 255, 0);
 
 }
 
@@ -487,8 +492,7 @@ tr.expert {
     position: absolute;
     top: -400px;
     width: 40%;
-    max-height: 300px;
-    height: 300px;
+    max-height: 350px;
     overflow: hidden;
     text-align: center;
     left: 30%;
@@ -500,11 +504,20 @@ tr.expert {
     z-index: 200;
 }
 
+.modal h1 {
+    font-size: 30px;
+    line-height: 42px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.modal h2 {
+    margin-bottom: 30px;
+    color: #c03fe0;
+}
+
 .modal-pos {
     top: 350px;
 }
 
-.modal h1 {
-    margin-bottom: 20px;
-    position: relative;
-}
+.modal h1 {}
