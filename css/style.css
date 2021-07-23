@@ -430,6 +430,7 @@ tr.expert {
     font-size: 10px;
     display: block;
     width: 100%;
+    color:rgb(63, 71, 116);
 }
 
 @keyframes safe-anim {
