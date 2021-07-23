@@ -310,13 +310,15 @@ tr.expert {
 
 @keyframes colorCicle {
     0% {
-        background-position: 0% 50%
+        background-position: 0% 50%;
+        opacity:0;
     }
-
+    15%{
+        opacity: 100;
+    }
     50% {
         background-position: 100% 50%
     }
-
     100% {
         background-position: 0% 50%
     }
@@ -431,33 +433,6 @@ tr.expert {
     display: block;
     width: 100%;
     color:rgb(63, 71, 116);
-}
-
-@keyframes safe-anim {
-    0% {
-        background-color: gray;
-        box-shadow: 0 0 0px aquamarine;
-    }
-
-    25% {
-        background-color: aquamarine;
-        box-shadow: 0 0 45px aquamarine;
-    }
-
-    50% {
-        background-color: gray;
-        box-shadow: 0 0 10px aquamarine;
-    }
-
-    75% {
-        background-color: aquamarine;
-        box-shadow: 0 0 45px aquamarine;
-    }
-
-    100% {
-        background-color: gray;
-        box-shadow: 0 0 0px aquamarine;
-    }
 }
 
 .safe-cell {
