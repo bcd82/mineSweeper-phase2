@@ -77,6 +77,7 @@ body:not(.container) {
     transition: 2s;
 }
 
+
 .dead {
     background: linear-gradient(315deg, #961818 0%, #000000 74%);
 }
@@ -124,6 +125,16 @@ h1 {
     border-radius: 20px;
     z-index: 3;
     box-shadow: 0 0 20px rgba(180, 54, 238, 0.568);
+    transition: opacity 0.5s ease-out 0.5s;
+    opacity: 100%;
+    /* transform: scale(1); */
+
+
+}
+
+.container-init {
+    opacity: 0%;
+    /* transform: scale(0.1); */
 }
 
 table {
@@ -380,9 +391,8 @@ button {
     cursor: pointer;
 }
 
-.hint:hover {
+.hint:not(.used):hover {
     background-color: rgb(189, 50, 177);
-
 }
 
 .used {
@@ -484,6 +494,7 @@ button {
     padding: 1% 10px;
     color: whitesmoke;
     transition: top 0.5s;
+    z-index: 200;
 }
 
 .modal-pos {

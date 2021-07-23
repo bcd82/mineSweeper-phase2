@@ -438,3 +438,8 @@ function setManualMode(elBtn) {
         gGame.isManualMode = false
     }
 }
+
+function initFirstGame() {
+    initGame()
+    document.querySelector('.container').classList.remove('container-init')
+}

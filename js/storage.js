@@ -11,7 +11,6 @@ function cloneGameState() {
                 isMine: gBoard[i][j].isMine,
                 isMarked: gBoard[i][j].isMarked
             }
-
         }
     }
     gBoardHistoryStates.push(histories)
@@ -62,5 +61,4 @@ function checkLocalStorageTime() {
 function getLocalStorageTimes() {
     gFastestTimes = localStorage;
     console.log(gFastestTimes)
-
 }
