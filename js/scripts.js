@@ -20,11 +20,10 @@ var gBoardHistoryStates;
 var gGameHistoryStates;
 var gFastestTimes;
 var gTimerInterval;
+var gGame =[] 
 
 function initGame() {
-
-    if (gTimerInterval) clearInterval(gTimerInterval)
-    gBoard = buildBoard(gLevel.SIZE)
+    if (gGame.isManualMode) return
     gGame = {
         isOn: true,
         shownCount: 0,
@@ -38,8 +37,10 @@ function initGame() {
         isSafeClickActive: false,
         isManualMode: false,
         isManualGame: false,
-        isNewFastestTime:false
+        isNewFastestTime: false
     }
+    if (gTimerInterval) clearInterval(gTimerInterval)
+    gBoard = buildBoard(gLevel.SIZE)
     gLevel.MINES = gLevel.SIZE === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / 6);
 
     getLocalStorageTimes()
