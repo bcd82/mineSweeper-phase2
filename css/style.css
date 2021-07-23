@@ -337,7 +337,7 @@ tr.expert {
     width: 75px;
     border-radius: 50%;
     border: none;
-    top: -11%;
+    top: -5%;
     margin-right: 5px;
     background-color: rgba(0, 0, 255, 0.24);
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.479);
@@ -447,7 +447,7 @@ tr.expert {
 .undo-btn {
     right: -2.5%;
     position: relative;
-    top: -28px;
+    top: -18px;
     height: 40px;
 }
 
@@ -459,7 +459,7 @@ tr.expert {
     left: -15px;
     position: relative;
     text-shadow: -2px 1px 1px black;
-    top: -15px;
+    top: -5px;
     color: rgba(255, 0, 0, 0.705);
     border: 2px solid rgba(185, 151, 176, 0.473);
     border-radius: 12em;
