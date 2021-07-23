@@ -291,7 +291,7 @@ function gameOver() {
     renderBoard(gBoard)
 }
 
-function changeSize(size, elBtn) {
+function setSize(size, elBtn) {
     if (gGame.isManualMode) return;
     gLevel.SIZE = size;
     gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 6);
