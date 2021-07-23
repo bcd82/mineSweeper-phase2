@@ -109,7 +109,7 @@ function hideModal() {
 }
 
 function setPlayImg(icon) {
-    var elBtn = document.querySelector('.game-btn');
+    var elBtn = document.querySelector('.game-btn p');
     elBtn.innerText = icon;
 }
 

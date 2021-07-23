@@ -93,6 +93,9 @@ button {
     border-radius: 0.5vh;
     transform: scale(1);
     cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 0 0;
 }
 
 button:not(.selected):hover {
@@ -127,14 +130,10 @@ h1 {
     box-shadow: 0 0 20px rgba(180, 54, 238, 0.568);
     transition: opacity 0.5s ease-out 0.5s;
     opacity: 100%;
-    /* transform: scale(1); */
-
-
 }
 
 .container-init {
     opacity: 0%;
-    /* transform: scale(0.1); */
 }
 
 table {
@@ -242,18 +241,17 @@ tr.expert {
     max-height: 140px;
     color: black;
 }
-
+ .top { 
+     height:50px;
+     top:20%;
+     position: relative;
+ }
 .bottom {
     top: -30px;
     position: relative;
     left: 0%
 }
 
-button {
-    font-size: 16px;
-    padding: 5px 10px;
-    margin: 0 0;
-}
 
 .dif-text {
     display: inline-block;
@@ -277,17 +275,17 @@ button {
 }
 
 .beg {
-    background-color: rgb(68, 131, 68);
+    background-color: rgb(61, 95, 146);
     color: white
 }
 
 .med {
-    background-color: rgb(112, 160, 231);
+    background-color: rgb(68, 131, 68);
     color: white
 }
 
 .exp {
-    background-color: rgb(255, 113, 113);
+    background-color: rgb(241, 76, 76);
     color: white
 }
 
@@ -306,33 +304,16 @@ button {
     background-color: greenyellow;
 }
 
-.timer {
-    display: inline-block;
-    box-sizing: content-box;
-    position: relative;
-    left: 3%;
-    color: rgb(231, 231, 231);
-    background-color: rgb(37, 18, 88);
-    padding: 8px 0px 8px 10px;
-    width: 190px;
-    box-shadow: inset gray 0 0 0px 2px;
-    font-size: 12px;
-}
-
-.timer::before {
-    content: "play time : ";
-    position: relative;
-}
 
 @keyframes colorCicle {
     0% {
         background-position: 0% 50%
     }
-
+    
     50% {
         background-position: 100% 50%
     }
-
+    
     100% {
         background-position: 0% 50%
     }
@@ -345,16 +326,21 @@ button {
 }
 
 .game-btn {
-    left: 2.5%;
     position: relative;
-    font-size: 30px;
+    font-size: 35px;
     height: 65px;
     width: 65px;
     border-radius: 50%;
     border: none;
+    top:-17%;
+    margin-right:5px;
     background-color: rgba(0, 0, 255, 0.24);
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.479);
     transition: all 0.1s;
+}
+.game-btn p {
+    position: relative;
+    left:-2px;
 }
 
 .game-btn:hover {
@@ -372,20 +358,20 @@ button {
 
 .hints {
     display: inline-block;
-    width: 170px;
-    height: 70%;
-    margin-left: 45px;
+    width: 60%;
+    height: 90%;
+    left:5%;
     position: relative;
 }
 
 .hint {
     display: inline-block;
-    width: 27%;
+    width: 22.5%;
     text-align: center;
     position: relative;
     height: 70%;
     padding: 4px;
-    font-size: 10px;
+    font-size: 14px;
     background-color: rgb(143, 11, 132);
     color: white;
     cursor: pointer;
@@ -393,6 +379,23 @@ button {
 
 .hint:not(.used):hover {
     background-color: rgb(189, 50, 177);
+}
+.timer {
+    display: inline-block;
+    box-sizing: content-box;
+    position: relative;
+    color: rgb(231, 231, 231);
+    background-color: rgb(37, 18, 88);
+    padding: 8px 0px 8px 10px;
+    width: 35%;
+    left:-40px;
+    box-shadow: inset gray 0 0 0px 2px;
+    font-size: 12px;
+}
+
+.timer::before {
+    content: "play time : ";
+    position: relative;
 }
 
 .used {
@@ -406,7 +409,7 @@ button {
     width: 100px;
     top: 15%;
     height: 100px;
-    left: -50px
+    left:-2.5%;
 }
 
 .safe-btn {
@@ -459,14 +462,14 @@ button {
 }
 
 .undo-btn {
-    right: -47px;
+    right: -2.5%;
     position: relative;
     top: -28px;
     height: 40px;
 }
 
 .lives {
-    width: 200px;
+    width: 180px;
     height: 70px;
     display: inline-block;
     font-size: 50px;
