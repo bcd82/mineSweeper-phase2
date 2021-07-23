@@ -311,14 +311,12 @@ tr.expert {
 @keyframes colorCicle {
     0% {
         background-position: 0% 50%;
-        opacity:0;
     }
-    15%{
-        opacity: 100;
-    }
+
     50% {
         background-position: 100% 50%
     }
+
     100% {
         background-position: 0% 50%
     }
@@ -391,7 +389,7 @@ tr.expert {
     display: inline-block;
     box-sizing: content-box;
     position: relative;
-    
+
     color: rgb(231, 231, 231);
     background-color: rgb(37, 18, 88);
     padding: 8px 2px 8px 10px;
@@ -432,7 +430,7 @@ tr.expert {
     font-size: 10px;
     display: block;
     width: 100%;
-    color:rgb(63, 71, 116);
+    color: rgb(63, 71, 116);
 }
 
 .safe-cell {
@@ -497,4 +495,3 @@ tr.expert {
 .modal-pos {
     top: 350px;
 }
-
