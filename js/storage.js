@@ -44,19 +44,23 @@ function loadPrevGameState(el) {
 }
 
 function checkLocalStorageTime() {
-    let timeToComplete = document.querySelector('.timer').innerText
+    let timeToComplete = gGame.secsPassed
     if (gLevel.SIZE === 4) {
-        if (+gFastestTimes.beginnerTime > +timeToComplete || !gFastestTimes.beginnerTime)
+        if (+gFastestTimes.beginnerTime > +timeToComplete || !gFastestTimes.beginnerTime) {
             gGame.isNewFastestTime = true;
-        localStorage.setItem('beginnerTime', timeToComplete)
+            localStorage.setItem('beginnerTime', timeToComplete)
+        }
     } else if (gLevel.SIZE === 8) {
-        if (+gFastestTimes.mediumTime > +timeToComplete || !gFastestTimes.mediumTime)
+        debugger
+        if (+gFastestTimes.mediumTime > +timeToComplete || !gFastestTimes.mediumTime) {
             localStorage.setItem('mediumTime', timeToComplete)
             gGame.isNewFastestTime = true;
+        }
     } else {
-        if (+gFastestTimes.expertTime > +timeToComplete || !gFastestTimes.expertTime)
+        if (+gFastestTimes.expertTime > +timeToComplete || !gFastestTimes.expertTime) {
             gGame.isNewFastestTime = true;
             localStorage.setItem('expertTime', timeToComplete)
+        }
     }
     //console.log(localStorage)
 }

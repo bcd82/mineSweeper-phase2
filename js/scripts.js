@@ -245,7 +245,7 @@ function startTimer() {
     gTimerInterval = setInterval(function () {
         gGame.secsPassed = (Date.now() - gGame.startTime) / 1000
         elTimer.innerText = gGame.secsPassed.toFixed(2)
-    }, 100);
+    }, 10);
 
 }
 
