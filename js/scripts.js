@@ -141,8 +141,6 @@ function cellClicked(event, i, j) {
                 setMineNegCount(gBoard)
             }
         }
-        cloneGameState()
-
         if (gGame.isHintActive) {
             showHint({
                 i,
@@ -152,6 +150,7 @@ function cellClicked(event, i, j) {
             return
         }
         if (cell.isMarked) return
+        cloneGameState()
         if (cell.isMine) {
             gGame.playerLives--;
             renderLife()
