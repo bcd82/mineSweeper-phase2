@@ -100,7 +100,6 @@ function showModal(gameResult) {
     } else {
         elModal.querySelector('h1').innerText = 'Sad face :( \n you were blown up.\n '
         elModal.querySelector('h2').innerText = 'R.I.P you'
-
     }
 }
 

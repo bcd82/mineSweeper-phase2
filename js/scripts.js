@@ -297,7 +297,7 @@ function gameOver() {
 function setSize(size, elBtn) {
     if (gGame.isManualMode) return;
     gLevel.SIZE = size;
-    gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2  / 4.5);
+    gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 4.5);
     var elBtns = document.querySelectorAll('.size-btn')
     elBtns.forEach(btn => {
         btn.classList.remove('selected')

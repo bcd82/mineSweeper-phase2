@@ -51,7 +51,6 @@ function checkLocalStorageTime() {
             localStorage.setItem('beginnerTime', timeToComplete)
         }
     } else if (gLevel.SIZE === 8) {
-        debugger
         if (+gFastestTimes.mediumTime > +timeToComplete || !gFastestTimes.mediumTime) {
             localStorage.setItem('mediumTime', timeToComplete)
             gGame.isNewFastestTime = true;
