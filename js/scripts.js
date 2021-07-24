@@ -41,7 +41,6 @@ function initGame() {
     }
     if (gTimerInterval) clearInterval(gTimerInterval)
     gBoard = buildBoard(gLevel.SIZE)
-    gLevel.MINES = gLevel.SIZE === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / 6);
 
     getLocalStorageTimes()
     resetDOMElements()
@@ -298,7 +297,7 @@ function gameOver() {
 function setSize(size, elBtn) {
     if (gGame.isManualMode) return;
     gLevel.SIZE = size;
-    gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 6);
+    gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2  / 4.5);
     var elBtns = document.querySelectorAll('.size-btn')
     elBtns.forEach(btn => {
         btn.classList.remove('selected')
@@ -345,18 +344,14 @@ function showRandomSafeCell(el) {
     if (gGame.isSafeClickActive || !gGame.isOn || gGame.isManualMode) return
     else {
         if (gGame.safeClicks <= 0) {
-
             return
         }
         el.classList.add('selected')
-
         gGame.isSafeClickActive = true;
         var safeCells = getSafeCells(gBoard)
         var randIdx = safeCells[getRandomInt(0, safeCells.length)]
-
         var elCell = document.querySelector(`td[onmousedown*='${randIdx.i},${randIdx.j}']`)
         elCell.classList.add('safe-cell')
-        //console.log(elCell)
         gGame.safeClicks--
         if (gGame.safeClicks === 0) {
             el.classList.add('selected')
@@ -402,8 +397,6 @@ function resetDOMElements() {
     document.querySelector('.game-btn').classList.remove('game-btn-anim');
     document.querySelector('.safe-btn').classList.remove('selected');
     document.querySelector('.undo-btn').classList.add('selected')
-
-
     setPlayImg(HAPPY_FACE)
 }
 
@@ -417,7 +410,6 @@ function setManualMode(elBtn) {
         elBtn.classList.add('manual-selected')
         //console.log('manual mode on')
         elBtn.innerText = "PLAY"
-
     } else {
         var count = 0;
         for (var i = 0; i < gBoard.length; i++) {
@@ -446,7 +438,6 @@ function setManualMode(elBtn) {
         } else {
             elBtns[2].classList.add('selected');
         }
-        //console.log('manual mode off')
         gGame.isManualMode = false
     }
 }

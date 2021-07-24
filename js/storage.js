@@ -14,12 +14,12 @@ function cloneGameState() {
         }
     }
     gBoardHistoryStates.push(histories)
-    var temp = {
+    var curGameState = {
         shownCount: gGame.shownCount,
         markedCount: gGame.markedCount,
         playerLives: gGame.playerLives
     }
-    gGameHistoryStates.push(temp);
+    gGameHistoryStates.push(curGameState);
     if (gBoardHistoryStates.length >= 1) {
         document.querySelector('.undo-btn').classList.remove('selected')
     }
