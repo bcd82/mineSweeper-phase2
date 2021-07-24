@@ -178,9 +178,7 @@ function cellClicked(event, i, j) {
             setMineNegCount(gBoard)
         }
         cloneGameState()
-
         cellMarked(i, j, gBoard)
-
     }
     renderBoard(gBoard)
     checkGameOver()
