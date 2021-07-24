@@ -318,22 +318,24 @@ function setHintActive(el) {
 function showHint(pos, board) {
     gGame.isHintActive = false;
     var exposedCells = [];
-    var exposedCellsVisibility = [];
+    var isMarkedcells = []
     for (var i = pos.i - 1; i <= pos.i + 1; i++) {
         if (i < 0 || i >= board.length) continue
         for (var j = pos.j - 1; j <= pos.j + 1; j++) {
             if (j < 0 || j >= board.length) continue
             var cell = board[i][j]
-            exposedCells.push(cell)
-            exposedCellsVisibility.push(cell.isShown)
+            if (!cell.isShown) exposedCells.push(cell)
+            isMarkedcells.push(cell.isMarked)
         }
     }
     for (var idx = 0; idx < exposedCells.length; idx++) {
         exposedCells[idx].isShown = true;
+        exposedCells[idx].isMarked = false;
     }
     setTimeout(() => {
         for (var idx = 0; idx < exposedCells.length; idx++) {
-            exposedCells[idx].isShown = exposedCellsVisibility[idx];
+            exposedCells[idx].isShown = false;
+            exposedCells[idx].isMarked = isMarkedcells[idx]
         }
         renderBoard(gBoard)
     }, 1000)
