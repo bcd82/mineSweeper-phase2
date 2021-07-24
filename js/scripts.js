@@ -41,7 +41,7 @@ function initGame() {
         isManualGame: false,
         isNewFastestTime: false
     }
-    gLevel.MINES = gLevel.SIZE  === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / MINE_RATIO);
+    gLevel.MINES = gLevel.SIZE === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / MINE_RATIO);
     if (gTimerInterval) clearInterval(gTimerInterval)
     gBoard = buildBoard(gLevel.SIZE)
 
