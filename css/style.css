@@ -88,7 +88,7 @@ body:not(.container) {
 
 button {
     font-family: game-font;
-    transition: box-shadow transform 0.2s;
+    transition: box-shadow transform 0.15s ease-out;
     box-shadow: 0 1px 2px black;
     border-radius: 0.5vh;
     transform: scale(1);
@@ -401,14 +401,15 @@ tr.expert {
     width: 100px;
     top: 15%;
     height: 100px;
-    left: -2.5%;
+    left: -1.9%;
 }
 
 .safe-btn {
     position: relative;
     height: 60%;
     color:black;
-    background-color: #98ed99;
+    background-color: rgb(104, 146, 223);
+    color:white
 }
 
 .safe-text {
@@ -430,16 +431,19 @@ tr.expert {
 }
 
 .undo-btn {
-    right: -2.5%;
+    right: -2%;
     position: relative;
     top: -18px;
     height: 40px;
+    color:white;
+    background-color: #238941c2;
 }
 
 .selected {
     background-color: gray;
     color: rgb(71, 68, 68);
     box-shadow: inset 0 2px 3px black;
+    transition:0.1s;
 }
 
 .selected:hover {
