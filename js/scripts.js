@@ -119,11 +119,16 @@ function cellClicked(event, i, j) {
 
     if (!gGame.isOn) return
     var cell = gBoard[i][j]
-    if (cell.isShown) return
+    if (cell.isShown && !gGame.isManualMode) return
     if (event.button === 0) {
         if (gGame.isManualMode) {
-            cell.isMine = true
-            cell.isShown = true;
+            if(cell.isShown){
+                cell.isMine = false
+                cell.isShown = false;
+            } else {
+                cell.isMine = true
+                cell.isShown = true;
+            }
             renderBoard(gBoard)
             return
         }
