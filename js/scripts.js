@@ -20,7 +20,7 @@ var gBoardHistoryStates;
 var gGameHistoryStates;
 var gFastestTimes;
 var gTimerInterval;
-var gGame =[] 
+var gGame = []
 
 function initGame() {
     if (gGame.isManualMode) return
@@ -122,7 +122,7 @@ function cellClicked(event, i, j) {
     if (cell.isShown && !gGame.isManualMode) return
     if (event.button === 0) {
         if (gGame.isManualMode) {
-            if(cell.isShown){
+            if (cell.isShown) {
                 cell.isMine = false
                 cell.isShown = false;
             } else {
@@ -346,6 +346,8 @@ function showRandomSafeCell(el) {
 
             return
         }
+        el.classList.add('selected')
+
         gGame.isSafeClickActive = true;
         var safeCells = getSafeCells(gBoard)
         var randIdx = safeCells[getRandomInt(0, safeCells.length)]
@@ -360,6 +362,8 @@ function showRandomSafeCell(el) {
         setTimeout(() => {
             elCell.classList.remove('safe-cell')
             gGame.isSafeClickActive = false
+            if (gGame.safeClicks > 0)
+                el.classList.remove('selected')
         }, 3000)
     }
 
