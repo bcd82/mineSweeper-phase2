@@ -10,6 +10,8 @@ const WIN_FACE = '🥳'
 const UNDO_FACE = '😀'
 const NO_HEARTS = '👻'
 
+const MINE_RATIO = 4.5
+
 var gBoard;
 var gLevel = {
     SIZE: 4,
@@ -39,6 +41,7 @@ function initGame() {
         isManualGame: false,
         isNewFastestTime: false
     }
+    gLevel.MINES = gLevel.SIZE  === 4 ? 3 : Math.floor(gLevel.SIZE ** 2 / MINE_RATIO);
     if (gTimerInterval) clearInterval(gTimerInterval)
     gBoard = buildBoard(gLevel.SIZE)
 
@@ -297,7 +300,7 @@ function gameOver() {
 function setSize(size, elBtn) {
     if (gGame.isManualMode) return;
     gLevel.SIZE = size;
-    gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / 4.5);
+    gLevel.MINES = size === 4 ? 3 : Math.floor(size ** 2 / MINE_RATIO);
     var elBtns = document.querySelectorAll('.size-btn')
     elBtns.forEach(btn => {
         btn.classList.remove('selected')
