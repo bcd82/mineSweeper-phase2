@@ -292,31 +292,17 @@ tr.expert {
     color: white
 }
 
-.selected {
-    background-color: gray;
-    color: rgb(71, 68, 68);
-    box-shadow: inset 0 2px 3px black;
-}
-
-.selected:hover {
-    box-shadow: inset 0 1px 2px black;
-
-}
-
-.manual-selected {
-    background-color: greenyellow;
-}
 
 
 @keyframes colorCicle {
     0% {
         background-position: 0% 50%;
     }
-
+    
     50% {
         background-position: 100% 50%
     }
-
+    
     100% {
         background-position: 0% 50%
     }
@@ -350,7 +336,7 @@ tr.expert {
 
 .game-btn:hover {
     box-shadow: 0 2px 5px;
-
+    
     transform: scale(1.03);
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.479);
     background-color: rgba(22, 22, 255, 0.466)
@@ -389,7 +375,7 @@ tr.expert {
     display: inline-block;
     box-sizing: content-box;
     position: relative;
-
+    
     color: rgb(231, 231, 231);
     background-color: rgb(37, 18, 88);
     padding: 8px 2px 8px 10px;
@@ -421,7 +407,8 @@ tr.expert {
 .safe-btn {
     position: relative;
     height: 60%;
-    display: block;
+    color:black;
+    background-color: #98ed99;
 }
 
 .safe-text {
@@ -439,7 +426,7 @@ tr.expert {
     background-size: 1400% 1400%;
     box-shadow: 0 0 45px aquamarine;
     border-color: rgba(0, 0, 255, 0);
-
+    
 }
 
 .undo-btn {
@@ -449,6 +436,20 @@ tr.expert {
     height: 40px;
 }
 
+.selected {
+    background-color: gray;
+    color: rgb(71, 68, 68);
+    box-shadow: inset 0 2px 3px black;
+}
+
+.selected:hover {
+    box-shadow: inset 0 1px 2px black;
+
+}
+
+.manual-selected {
+    background-color: greenyellow;
+}
 .lives {
     width: 180px;
     height: 70px;
